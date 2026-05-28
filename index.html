@@ -47,10 +47,41 @@ html,body{
   position:relative;
 }
 
-/* ── HEADER ── */
+/* ── WHITE LOGO BAR ── */
+.header-bar{
+  background:white;
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  flex-shrink:0;
+  border-bottom:1px solid #e8f5d8;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  position:relative;z-index:2;
+}
+
+.brand-logos{display:flex;align-items:center;gap:10px}
+
+/* logos direct — no pill needed on white */
+.brand-logo{height:42px;object-fit:contain;display:block}
+
+.brand-sep{
+  width:1.5px;height:32px;
+  background:#d1e8b0;flex-shrink:0;
+}
+
+.header-chip{
+  background:linear-gradient(135deg,#93cc3a,#66a020);
+  border:none;
+  padding:6px 14px;border-radius:999px;
+  font-size:11px;font-weight:700;color:white;
+  letter-spacing:.3px;flex-shrink:0;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(123,191,46,.3);
+}
+
+/* ── HEADER (green section) ── */
 .header{
   background:linear-gradient(160deg,#93cc3a 0%,#7bbf2e 45%,#5a9020 100%);
-  padding:18px 20px 22px;
+  padding:16px 20px 22px;
   position:relative;overflow:hidden;flex-shrink:0;
 }
 
@@ -71,38 +102,6 @@ html,body{
   position:absolute;width:180px;height:180px;border-radius:50%;
   background:rgba(50,80,10,.2);filter:blur(45px);
   bottom:-60px;left:-30px;pointer-events:none;
-}
-
-.header-top{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:10px;margin-bottom:14px;position:relative;z-index:1;
-}
-
-/* LOGOS */
-.brand-logos{display:flex;align-items:center;gap:10px}
-
-.brand-logo-pill{
-  background:rgba(255,255,255,.97);
-  border-radius:12px;
-  padding:6px 14px;
-  display:flex;align-items:center;height:58px;
-  box-shadow:0 2px 10px rgba(0,0,0,.12);
-}
-.brand-logo{height:44px;object-fit:contain;display:block}
-
-.brand-sep{
-  width:1.5px;height:36px;
-  background:rgba(255,255,255,.45);flex-shrink:0;
-}
-
-.brand-sub{font-size:10px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.2px;margin-top:3px}
-
-.header-chip{
-  background:rgba(255,255,255,.2);
-  border:1px solid rgba(255,255,255,.35);
-  padding:5px 12px;border-radius:999px;
-  font-size:11px;font-weight:700;color:white;
-  letter-spacing:.3px;flex-shrink:0;white-space:nowrap;
 }
 
 /* HERO */
@@ -413,26 +412,23 @@ select option{background:white;color:var(--text)}
 
 <div class="screen">
 
-  <!-- HEADER -->
+  <!-- WHITE LOGO BAR -->
+  <div class="header-bar">
+    <div>
+      <div class="brand-logos">
+        <img src="assets/waafi.svg" alt="Waafi" class="brand-logo">
+        <div class="brand-sep"></div>
+        <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo">
+      </div>
+      <div class="brand-sub">Amaahda Waafi</div>
+    </div>
+    <div class="header-chip">Amaah Degdeg ah</div>
+  </div>
+
+  <!-- GREEN HEADER -->
   <div class="header">
     <div class="hglow-a"></div>
     <div class="hglow-b"></div>
-
-    <div class="header-top">
-      <div>
-        <div class="brand-logos">
-          <div class="brand-logo-pill">
-            <img src="assets/waafi.svg" alt="Waafi" class="brand-logo">
-          </div>
-          <div class="brand-sep"></div>
-          <div class="brand-logo-pill">
-            <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo">
-          </div>
-        </div>
-        <div class="brand-sub">Amaahda Waafi</div>
-      </div>
-      <div class="header-chip">Amaah Degdeg ah</div>
-    </div>
 
     <div class="header-hero">
       <div class="header-eyebrow">Maalgelin degdeg ah oo la qabsan karo</div>
