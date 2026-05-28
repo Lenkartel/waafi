@@ -50,9 +50,10 @@ html,body{
 /* ── WHITE LOGO BAR ── */
 .header-bar{
   background:white;
-  padding:10px 20px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;
+  padding:10px 20px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
   flex-shrink:0;
   border-bottom:1px solid #e8f5d8;
   box-shadow:0 2px 8px rgba(0,0,0,.06);
@@ -60,6 +61,10 @@ html,body{
 }
 
 .brand-logos{display:flex;align-items:center;gap:10px}
+
+.brand-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+}
 
 /* logos direct — no pill needed on white */
 .brand-logo-waafi{height:84px;object-fit:contain;display:block}
@@ -103,6 +108,11 @@ html,body{
   position:absolute;width:180px;height:180px;border-radius:50%;
   background:rgba(50,80,10,.2);filter:blur(45px);
   bottom:-60px;left:-30px;pointer-events:none;
+}
+
+.brand-sub{
+  font-size:13px;font-weight:800;
+  color:var(--green-dark);letter-spacing:.2px;
 }
 
 /* HERO */
@@ -415,15 +425,15 @@ select option{background:white;color:var(--text)}
 
   <!-- WHITE LOGO BAR -->
   <div class="header-bar">
-    <div>
-      <div class="brand-logos">
-        <img src="assets/waafi.svg" alt="Waafi" class="brand-logo-waafi">
-        <div class="brand-sep"></div>
-        <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo-salaam">
-      </div>
-      <div class="brand-sub">Amaahda Waafi</div>
+    <div class="brand-logos">
+      <img src="assets/waafi.svg" alt="Waafi" class="brand-logo-waafi">
+      <div class="brand-sep"></div>
+      <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo-salaam">
     </div>
-    <div class="header-chip">Amaah Degdeg ah</div>
+    <div class="brand-bottom">
+      <div class="brand-sub">Waafi Loans</div>
+      <div class="header-chip">Amaah Degdeg ah</div>
+    </div>
   </div>
 
   <!-- GREEN HEADER -->
