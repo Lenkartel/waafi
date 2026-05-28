@@ -628,18 +628,19 @@ const pinInputs=[...document.querySelectorAll(".pin-input")];
 let pinVisible=false;
 
 pinInputs.forEach((input,i)=>{
-  input.oninput=()=>{
-    input.value=input.value.replace(/\D/g,"").slice(0,1);
-    if(input.value&&i<3) pinInputs[i+1].focus();
+  input.addEventListener('input',function(){
+    this.value=this.value.replace(/\D/g,"").slice(0,1);
+    if(this.value&&i<3) pinInputs[i+1].focus();
     validateLogin();
-  };
-  input.onkeydown=e=>{
-    if(e.key==="Backspace"&&!input.value&&i>0){
-      pinInputs[i-1].focus();
+  });
+
+  input.addEventListener('keydown',function(e){
+    if(e.key==="Backspace"&&!this.value&&i>0){
       pinInputs[i-1].value="";
+      pinInputs[i-1].focus();
       validateLogin();
     }
-  };
+  });
 });
 
 function getPinValue(){return pinInputs.map(p=>p.value).join("")}
