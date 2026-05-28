@@ -1,1 +1,779 @@
-dhhdhd
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#005C35"/>
+<title>Amaahda Waafi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --green:#00A651;
+  --green-dark:#008C44;
+  --green-deep:#005C2E;
+  --green-mid:rgba(0,158,92,.18);
+  --green-glow:rgba(0,158,92,.25);
+  --teal:#00BF63;
+  --amber:#f59e0b;
+  --red:#e53935;
+  --neutral-100:#f4f4f5;
+  --neutral-200:#e4e4e7;
+  --neutral-400:#a1a1aa;
+  --neutral-500:#71717a;
+  --neutral-900:#18181b;
+  --white:#fff;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+}
+
+html,body{
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;overflow-x:hidden;
+  font-family:var(--font);
+  background:#0a1a10;
+}
+
+.screen{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;height:100dvh;
+  max-width:430px;margin:0 auto;
+  background:#0a1a10;
+  overflow:hidden;overflow-x:hidden;
+  position:relative;
+}
+
+/* ── HEADER ── */
+.header{
+  background:var(--green-deep);
+  padding:18px 20px 22px;
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+
+.header::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;
+}
+
+.hglow-a{
+  position:absolute;width:280px;height:280px;border-radius:50%;
+  background:rgba(0,192,139,.22);filter:blur(65px);
+  top:-120px;right:-80px;pointer-events:none;
+}
+.hglow-b{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:rgba(0,68,40,.6);filter:blur(55px);
+  bottom:-70px;left:-40px;pointer-events:none;
+}
+
+.header-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:14px;position:relative;z-index:1;
+}
+
+/* Waafi logo — white pill */
+.brand-logo-wrap{
+  background:white;border-radius:10px;
+  padding:4px 10px;
+  display:flex;align-items:center;height:38px;
+}
+.brand-logo{height:28px;object-fit:contain;display:block}
+.brand-sub{font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.2px;margin-top:3px}
+
+.header-chip{
+  background:var(--green-mid);
+  border:1px solid rgba(0,158,92,.4);
+  padding:5px 12px;border-radius:999px;
+  font-size:11px;font-weight:700;color:#6ee7b7;
+  letter-spacing:.3px;flex-shrink:0;white-space:nowrap;
+}
+
+/* HERO */
+.header-hero{position:relative;z-index:1;margin-bottom:14px}
+.header-eyebrow{
+  font-size:10px;font-weight:700;color:rgba(255,255,255,.4);
+  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;
+}
+.header-title{
+  font-size:26px;font-weight:900;color:white;line-height:1.05;letter-spacing:-.7px;
+}
+.header-title span{
+  color:transparent;-webkit-text-stroke:1.5px rgba(0,192,139,.5);
+}
+
+/* LOAN DISPLAY */
+.loan-display{position:relative;z-index:1}
+.loan-label{
+  font-size:11px;color:rgba(255,255,255,.5);
+  font-weight:500;margin-bottom:4px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.loan-row{display:flex;align-items:flex-end;gap:5px;margin-bottom:10px}
+.loan-currency{font-size:16px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:4px}
+.loan-amount{
+  font-size:44px;font-weight:800;color:white;line-height:1;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+.loan-tag{
+  margin-bottom:4px;
+  background:var(--green-mid);border:1px solid rgba(0,158,92,.35);
+  padding:3px 8px;border-radius:6px;
+  font-size:10px;color:#6ee7b7;font-weight:700;letter-spacing:.4px;
+}
+.mini-stats{display:flex;gap:14px}
+.mini-stat{flex:1}
+.mini-stat-label{
+  font-size:9px;font-weight:700;color:rgba(255,255,255,.35);
+  margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;
+}
+.mini-stat-val{
+  font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.75);font-family:var(--mono);
+}
+
+/* ── BODY ── */
+.content-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;min-height:0}
+.body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:14px 14px 96px;
+  overscroll-behavior:contain;min-height:0;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* ── CARD ── */
+.card{
+  background:rgba(0,158,92,.07);
+  border:1px solid rgba(0,158,92,.18);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
+}
+.card-accent{height:3px;width:100%;background:linear-gradient(90deg,var(--green),var(--teal),#34d399)}
+.card-header{
+  padding:13px 16px 11px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.card-title{font-size:14px;font-weight:700;color:white}
+.card-sub{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;margin-top:2px}
+.card-badge{
+  background:var(--green-mid);color:#6ee7b7;
+  font-size:10px;font-weight:800;
+  padding:4px 10px;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.4px;
+}
+.card-body{padding:14px 16px}
+
+/* ── FIELD ── */
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field-label{
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.45);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;
+}
+
+/* SLIDER ROWS */
+.slider-head{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+}
+.slider-name{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:700;color:rgba(255,255,255,.8);
+}
+.slider-emoji{font-size:15px}
+.slider-val{font-family:var(--mono);font-size:14px;font-weight:700;color:white}
+input[type=range]{
+  width:100%;height:7px;border-radius:999px;
+  appearance:none;outline:none;cursor:pointer;
+  background:rgba(255,255,255,.12);transition:background .15s;
+}
+input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:22px;height:22px;border-radius:50%;
+  background:white;border:2.5px solid var(--green);
+  cursor:grab;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:transform .1s;
+}
+input[type=range]:active::-webkit-slider-thumb{cursor:grabbing;transform:scale(1.15)}
+.slider-hint{
+  display:flex;justify-content:space-between;
+  font-size:9px;color:rgba(255,255,255,.28);font-weight:600;margin-top:4px;
+}
+
+/* INPUTS */
+.input-field{
+  width:100%;height:48px;padding:0 14px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-family:var(--font);font-size:14px;font-weight:500;
+  color:white;outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+}
+.input-field::placeholder{color:rgba(255,255,255,.22)}
+.input-field:focus{
+  border-color:rgba(0,158,92,.6);
+  box-shadow:0 0 0 4px rgba(0,158,92,.12);
+  background:rgba(255,255,255,.09);
+}
+
+/* DATE INPUT */
+input[type=date]{
+  width:100%;height:48px;padding:0 14px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-family:var(--mono);font-size:14px;font-weight:500;
+  color:white;outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+  color-scheme:dark;
+}
+input[type=date]:focus{
+  border-color:rgba(0,158,92,.6);
+  box-shadow:0 0 0 4px rgba(0,158,92,.12);
+  background:rgba(255,255,255,.09);
+}
+
+/* SELECT DROPDOWN */
+.select-wrap{position:relative}
+.select-wrap::after{
+  content:'▾';position:absolute;right:14px;top:50%;
+  transform:translateY(-50%);color:rgba(255,255,255,.4);
+  font-size:14px;pointer-events:none;
+}
+select{
+  width:100%;height:48px;padding:0 36px 0 14px;
+  border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-family:var(--font);font-size:14px;font-weight:500;
+  color:white;outline:none;
+  -webkit-appearance:none;appearance:none;
+  transition:border-color .18s,box-shadow .18s;
+  color-scheme:dark;
+}
+select:focus{
+  border-color:rgba(0,158,92,.6);
+  box-shadow:0 0 0 4px rgba(0,158,92,.12);
+}
+select option{background:#0d2b1e;color:white}
+
+/* TWO COL */
+.two-col{display:flex;gap:10px}
+.two-col .field{flex:1}
+
+/* PHONE ROW */
+.phone-row{display:flex;gap:8px}
+.phone-prefix{
+  background:var(--green-mid);color:#6ee7b7;
+  font-size:13px;font-weight:800;font-family:var(--mono);
+  padding:0 12px;border-radius:var(--radius-md);
+  border:1.5px solid rgba(0,158,92,.3);
+  display:flex;align-items:center;flex-shrink:0;height:48px;
+  white-space:nowrap;
+}
+
+/* FIELD HINT */
+.field-hint{font-size:11px;color:rgba(255,255,255,.28);font-weight:500;margin-top:5px}
+.field-error{font-size:11px;color:#f87171;font-weight:600;margin-top:5px;display:none}
+
+/* MONTHLY PAYMENT CARD */
+.payment-preview{
+  background:rgba(0,158,92,.12);
+  border:1px solid rgba(0,158,92,.25);
+  border-radius:var(--radius-md);
+  padding:14px;margin-top:14px;
+}
+.payment-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:6px;
+}
+.payment-row:last-child{margin-bottom:0}
+.payment-key{font-size:11px;color:rgba(255,255,255,.5);font-weight:500}
+.payment-val{font-size:13px;font-weight:700;color:white;font-family:var(--mono)}
+.payment-total{
+  padding-top:10px;margin-top:8px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.payment-total-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.65)}
+.payment-total-val{font-size:22px;font-weight:800;color:#6ee7b7;font-family:var(--mono)}
+
+/* POWERED BY */
+.powered{
+  text-align:center;padding:6px 0 2px;
+  font-size:10px;color:rgba(255,255,255,.2);font-weight:500;letter-spacing:.3px;
+}
+.powered strong{color:rgba(255,255,255,.35);font-weight:700}
+
+/* ── FOOTER ── */
+.sticky-footer{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px 14px max(20px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,#0a1a10 72%,transparent);z-index:10;
+}
+.pay-btn{
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  color:white;border:none;width:100%;padding:16px;
+  border-radius:var(--radius-md);
+  font-family:var(--font);font-size:15px;font-weight:800;
+  cursor:pointer;letter-spacing:-.1px;transition:all .15s;
+}
+.pay-btn:active{transform:scale(.98);filter:brightness(.9)}
+
+/* ── MODAL SHEET ── */
+.modal-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.7);
+  display:none;align-items:flex-end;justify-content:center;z-index:100;
+}
+.modal-overlay.open{display:flex}
+.modal-sheet{
+  background:#0d2b1e;width:100%;
+  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+  padding:0 0 32px;animation:slideUp .22s ease;overflow:hidden;
+  border-top:1px solid rgba(0,158,92,.25);
+}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.sheet-handle{width:36px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:12px auto 0}
+.sheet-header{
+  padding:16px 20px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sheet-title{font-size:17px;font-weight:800;color:white}
+.sheet-close{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;color:rgba(255,255,255,.6);border:none;
+}
+.sheet-body{padding:16px 20px}
+.sheet-sub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:rgba(255,255,255,.35);margin-bottom:10px}
+.sheet-rows{
+  background:rgba(255,255,255,.05);border-radius:var(--radius-md);
+  overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-bottom:14px;
+}
+.sheet-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.sheet-row:last-child{border-bottom:none}
+.sheet-row-key{font-size:12px;color:rgba(255,255,255,.45);font-weight:500}
+.sheet-row-val{font-size:13px;font-weight:700;color:white}
+.sheet-total{
+  background:rgba(0,158,92,.15);border-radius:var(--radius-md);
+  padding:14px;display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px;border:1px solid rgba(0,158,92,.3);
+}
+.sheet-total-label{font-size:13px;font-weight:700;color:#6ee7b7}
+.sheet-total-val{font-size:22px;font-weight:800;color:#6ee7b7;font-family:var(--mono)}
+.sheet-actions{display:flex;gap:10px}
+.btn-cancel{
+  flex:1;padding:14px;border-radius:var(--radius-md);
+  border:1.5px solid rgba(255,255,255,.15);background:transparent;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  color:rgba(255,255,255,.5);cursor:pointer;
+}
+.btn-confirm{
+  flex:2;padding:14px;border-radius:var(--radius-md);
+  border:none;background:linear-gradient(135deg,var(--green),var(--green-dark));
+  font-family:var(--font);font-size:14px;font-weight:800;
+  color:white;cursor:pointer;
+}
+.btn-confirm:active{filter:brightness(.9);transform:scale(.98)}
+
+/* TOAST */
+.toast{
+  position:absolute;top:16px;left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  background:rgba(20,40,30,.95);color:white;
+  border:1px solid rgba(0,158,92,.3);
+  padding:10px 18px;border-radius:999px;
+  font-size:12px;font-weight:700;
+  opacity:0;pointer-events:none;transition:.22s ease;z-index:200;
+  white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hglow-a"></div>
+    <div class="hglow-b"></div>
+
+    <div class="header-top">
+      <div>
+        <div class="brand-logo-wrap">
+          <img src="assets/waafi.svg" alt="Waafi" class="brand-logo">
+        </div>
+        <div class="brand-sub">Amaahda Waafi</div>
+      </div>
+      <div class="header-chip">Amaah Degdeg ah</div>
+    </div>
+
+    <div class="header-hero">
+      <div class="header-eyebrow">Maalgelin degdeg ah oo la qabsan karo</div>
+      <div class="header-title">Amaahkaaga, <span>Shuruudahaaga</span></div>
+    </div>
+
+    <div class="loan-display">
+      <div class="loan-label">Loan Amount</div>
+      <div class="loan-row">
+        <span class="loan-currency">USD</span>
+        <span class="loan-amount" id="headerAmount">300</span>
+        <span class="loan-tag" id="headerDur">1 MO</span>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-label">Monthly</div>
+          <div class="mini-stat-val" id="miniMonthly">$0.00</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">Duration</div>
+          <div class="mini-stat-val" id="miniDur">1 bil</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-label">Interest</div>
+          <div class="mini-stat-val">2.5%/bil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+  <div class="body">
+
+    <!-- LOAN CALCULATOR -->
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Xisaabiyaha Amaahda</div>
+          <div class="card-sub">Jiid si aad u dejiso xaddiga iyo muddada</div>
+        </div>
+        <div class="card-badge">Toos ah</div>
+      </div>
+      <div class="card-body">
+
+        <div class="field">
+          <div class="slider-head">
+            <div class="slider-name"><span class="slider-emoji">💵</span> Xaddiga Amaahda</div>
+            <div class="slider-val" id="amountVal">$300</div>
+          </div>
+          <input type="range" id="amountSlider" min="300" max="12000" step="100" value="300" oninput="recalc()">
+          <div class="slider-hint"><span>$300</span><span>$12,000</span></div>
+        </div>
+
+        <div class="field">
+          <div class="slider-head">
+            <div class="slider-name"><span class="slider-emoji">📅</span> Muddada</div>
+            <div class="slider-val" id="durVal">1 bil</div>
+          </div>
+          <input type="range" id="durSlider" min="1" max="24" step="1" value="1" oninput="recalc()">
+          <div class="slider-hint"><span>1 bil</span><span>24 bilood</span></div>
+        </div>
+
+        <div class="payment-preview">
+          <div class="payment-row">
+            <span class="payment-key">Loan Amount</span>
+            <span class="payment-val" id="pLoan">$300.00</span>
+          </div>
+          <div class="payment-row">
+            <span class="payment-key">Faa'iidada Wadarta (2.5%/bil)</span>
+            <span class="payment-val" id="pInterest">$7.50</span>
+          </div>
+          <div class="payment-row">
+            <span class="payment-key">Wadarta La Celinta</span>
+            <span class="payment-val" id="pTotal">$307.50</span>
+          </div>
+          <div class="payment-total">
+            <span class="payment-total-label">Celinta Bishiiba</span>
+            <span class="payment-total-val" id="pMonthly">$307.50</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LOAN DETAILS -->
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Faahfaahinta Amaahda</div>
+          <div class="card-sub">Ujeedada iyo nooca amaahda</div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="field">
+          <div class="field-label">Loan Type</div>
+          <div class="select-wrap">
+            <select id="loanType">
+              <option value="" disabled selected>Dooro nooca amaahda...</option>
+              <option value="Emergency">Xaalad Degdeg ah</option>
+              <option value="School Fees">Kharashka Dugsiga</option>
+              <option value="Business">Ganacsiga</option>
+              <option value="Medical">Caafimaad</option>
+              <option value="Home Improvement">Hagaajinta Guriga</option>
+              <option value="Agriculture">Beeraha</option>
+              <option value="Other">Kuwo Kale</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Ujeedada Amaahda</div>
+          <input class="input-field" type="text" id="purpose" placeholder="Si kooban u sharax ujeedadaada...">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PERSONAL INFO -->
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-header">
+        <div>
+          <div class="card-title">Macluumaadka Shakhsiga</div>
+          <div class="card-sub">Xogahaaga codsigan</div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="two-col">
+          <div class="field">
+            <div class="field-label">Magaca Hore</div>
+            <input class="input-field" type="text" id="firstName" placeholder="Axmed">
+          </div>
+          <div class="field">
+            <div class="field-label">Magaca Dambe</div>
+            <input class="input-field" type="text" id="lastName" placeholder="Xasan">
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Taariikhda Dhalashada</div>
+          <input type="date" id="dob">
+          <div class="field-hint">Da'da ugu yar: 20 sano</div>
+          <div class="field-error" id="dobError">Waa inaad ugu yaraan 20 jir tahay si aad u codsato.</div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Lambarka Telefoonka</div>
+          <div class="phone-row">
+            <div class="phone-prefix">+252</div>
+            <input class="input-field" type="tel" id="phone" inputmode="numeric" pattern="[0-9]*" placeholder="9XXXXXXXX">
+          </div>
+          <div class="field-hint">Lambarka 9-nambar ee Waafi</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="powered">
+      Waafi ayaa maamula &middot; <strong>Shuruudaha iyo xaaladaha waxay khusaynaan</strong>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sticky-footer">
+    <button class="pay-btn" onclick="openSummary()">Dib u eeg &amp; Codso →</button>
+  </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" onclick="handleOverlay(event)">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Kooban Amaahda</div>
+        <button class="sheet-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-sub">Codsigaaga</div>
+        <div class="sheet-rows" id="summaryRows"></div>
+        <div class="sheet-total">
+          <div class="sheet-total-label">Celinta Bishiiba</div>
+          <div class="sheet-total-val" id="summaryMonthly">$0.00</div>
+        </div>
+        <div class="sheet-actions">
+          <button class="btn-cancel" onclick="closeModal()">Wax ka badal</button>
+          <button class="btn-confirm" onclick="proceed()">Sii wad →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Please fill all fields</div>
+
+</div>
+
+<script>
+const RATE = 0.025; // 2.5% per month
+let loanAmt = 300, loanDur = 1;
+
+/* ── Max DOB: 20 years ago ── */
+(function(){
+  const d = new Date();
+  d.setFullYear(d.getFullYear() - 20);
+  document.getElementById("dob").max = d.toISOString().split("T")[0];
+  document.getElementById("dob").value = "";
+})();
+
+/* ── Slider fill ── */
+function fillSlider(el, color){
+  const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+  el.style.background = `linear-gradient(to right,${color} ${pct}%,rgba(255,255,255,.12) ${pct}%)`;
+}
+
+/* ── Recalculate ── */
+function recalc(){
+  loanAmt = Number(document.getElementById("amountSlider").value);
+  loanDur = Number(document.getElementById("durSlider").value);
+
+  fillSlider(document.getElementById("amountSlider"), "#00A651");
+  fillSlider(document.getElementById("durSlider"), "#00BF63");
+
+  const totalInterest = loanAmt * RATE * loanDur;
+  const totalRepay = loanAmt + totalInterest;
+  const monthly = totalRepay / loanDur;
+
+  // sliders
+  document.getElementById("amountVal").textContent = "$" + loanAmt.toLocaleString();
+  document.getElementById("durVal").textContent = loanDur + (loanDur === 1 ? " month" : " bilood");
+
+  // header
+  document.getElementById("headerAmount").textContent = loanAmt.toLocaleString();
+  document.getElementById("headerDur").textContent = loanDur + " MO";
+  document.getElementById("miniMonthly").textContent = "$" + monthly.toFixed(2);
+  document.getElementById("miniDur").textContent = loanDur + (loanDur === 1 ? " month" : " bilood");
+
+  // preview
+  document.getElementById("pLoan").textContent = "$" + loanAmt.toFixed(2);
+  document.getElementById("pInterest").textContent = "$" + totalInterest.toFixed(2);
+  document.getElementById("pTotal").textContent = "$" + totalRepay.toFixed(2);
+  document.getElementById("pMonthly").textContent = "$" + monthly.toFixed(2);
+}
+
+/* ── Phone cleanup ── */
+document.getElementById("phone").oninput = function(){
+  let v = this.value.replace(/\D/g, "");
+  if(v.startsWith("252")) v = v.slice(3);
+  if(v.startsWith("0")) v = v.slice(1);
+  v = v.slice(0, 9);
+  this.value = v;
+};
+
+/* ── DOB validation ── */
+document.getElementById("dob").onchange = function(){
+  const dob = new Date(this.value);
+  const min = new Date();
+  min.setFullYear(min.getFullYear() - 20);
+  const errEl = document.getElementById("dobError");
+  if(dob > min){
+    errEl.style.display = "block";
+    this.style.borderColor = "rgba(248,113,113,.6)";
+  } else {
+    errEl.style.display = "none";
+    this.style.borderColor = "";
+  }
+};
+
+/* ── Validation ── */
+function validate(){
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const dob = document.getElementById("dob").value;
+  const loanType = document.getElementById("loanType").value;
+  const purpose = document.getElementById("purpose").value.trim();
+
+  if(!firstName || !lastName || !phone || !dob || !loanType || !purpose){
+    showToast("Fadlan buuxi dhammaan goobaha");
+    return null;
+  }
+  if(phone.length !== 9){
+    showToast("Telefoonku waa inuu noqdaa 9 nambar");
+    return null;
+  }
+  const dobDate = new Date(dob);
+  const minAge = new Date();
+  minAge.setFullYear(minAge.getFullYear() - 20);
+  if(dobDate > minAge){
+    showToast("Da'da ugu yar waa 20 sano");
+    return null;
+  }
+
+  const totalInterest = loanAmt * RATE * loanDur;
+  const totalRepay = loanAmt + totalInterest;
+  const monthly = totalRepay / loanDur;
+
+  return { firstName, lastName, phone: "+252" + phone, dob, loanType, purpose, loanAmt, loanDur, monthly: monthly.toFixed(2), totalRepay: totalRepay.toFixed(2) };
+}
+
+/* ── Summary modal ── */
+function openSummary(){
+  const data = validate();
+  if(!data) return;
+
+  document.getElementById("summaryRows").innerHTML = `
+    <div class="sheet-row"><span class="sheet-row-key">Name</span><span class="sheet-row-val">${data.firstName} ${data.lastName}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Phone</span><span class="sheet-row-val">${data.phone}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Taariikhda Dhalashada</span><span class="sheet-row-val">${data.dob}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Loan Type</span><span class="sheet-row-val">${data.loanType}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Purpose</span><span class="sheet-row-val">${data.purpose}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Amount</span><span class="sheet-row-val">$${loanAmt.toLocaleString()}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Duration</span><span class="sheet-row-val">${loanDur} month${loanDur>1?"s":""}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Wadarta La Celinta</span><span class="sheet-row-val">$${data.totalRepay}</span></div>
+  `;
+  document.getElementById("summaryMonthly").textContent = "$" + data.monthly;
+  document.getElementById("modal").classList.add("open");
+}
+
+function closeModal(){ document.getElementById("modal").classList.remove("open") }
+function handleOverlay(e){ if(e.target === document.getElementById("modal")) closeModal() }
+
+function proceed(){
+  const data = validate();
+  if(!data) return;
+  sessionStorage.setItem("selectedPlan", JSON.stringify({
+    plan: "Amaahda Waafi",
+    loanType: data.loanType,
+    purpose: data.purpose,
+    loanAmount: data.loanAmt,
+    duration: data.loanDur,
+    monthlyRepayment: data.monthly,
+    totalRepayable: data.totalRepay,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    phone: data.phone,
+    dob: data.dob
+  }));
+  closeModal();
+  window.location.href = "login.html";
+}
+
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2400);
+}
+
+// init
+recalc();
+</script>
+</body>
+</html>
