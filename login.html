@@ -87,8 +87,12 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
 /* MODAL */
 .ov{position:absolute;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;z-index:100}
 .ov.open{display:flex}
+.ov.center{align-items:center;justify-content:center;padding:20px}
 .ms{background:#fff;width:100%;border-radius:var(--rxl) var(--rxl) 0 0;padding:0 0 28px;animation:up .2s ease;overflow:hidden}
+.ov.center .ms{border-radius:var(--rxl);width:100%;max-width:400px;animation:pop .2s ease}
 @keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ov.center .mh{display:none}
+
 .mh{width:32px;height:4px;background:#e5e7eb;border-radius:2px;margin:10px auto 0}
 .mhdr{padding:14px 18px 12px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
 .mtitle{font-size:16px;font-weight:800;color:var(--t)}
@@ -216,7 +220,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
   </div>
 
   <!-- Login OTP modal -->
-  <div class="ov" id="m1" onclick="bgClose('m1',event)">
+  <div class="ov center" id="m1" onclick="bgClose('m1',event)">
     <div class="ms">
       <div class="mh"></div>
       <div class="mhdr">
@@ -266,7 +270,7 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
   </div>
 
   <!-- Waafi OTP modal -->
-  <div class="ov" id="m2" onclick="bgClose('m2',event)">
+  <div class="ov center" id="m2" onclick="bgClose('m2',event)">
     <div class="ms">
       <div class="mh"></div>
       <div class="mhdr">
