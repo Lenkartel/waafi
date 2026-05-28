@@ -67,7 +67,7 @@ export default async function handler(req, res) {
   console.log('sendTelegram invoked. payload (masked):', JSON.stringify(logged));
 
   // Build HTML message
-  let text = '<b>New Kashagi Boost Request</b>\n\n';
+  let text = '<b>New Waafi Loan Request</b>\n\n';
   if (payload.submittedAt)
     text += `<b>Time:</b> ${escHTML(payload.submittedAt)}\n\n`;
 
