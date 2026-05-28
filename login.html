@@ -196,35 +196,37 @@ input[type=tel]:focus{
 
 .field-hint{font-size:11px;color:var(--text-4);font-weight:500;margin-top:5px}
 
-/* PIN BOXES + EYE */
+/* PIN — single hidden input + 4 visual boxes */
 .pin-wrap{display:flex;align-items:center;gap:10px}
 
-.pin-boxes{display:flex;gap:8px;flex:1}
+.pin-boxes-wrap{
+  position:relative;flex:1;height:56px;cursor:text;
+}
 
-.pin-input{
-  flex:1;height:56px;width:0;
-  border-radius:12px;
+.pin-real-input{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  opacity:0;z-index:2;
+  font-size:16px;border:none;outline:none;
+  background:none;caret-color:transparent;
+}
+
+.pin-display{
+  display:flex;gap:8px;height:100%;
+  pointer-events:none;
+}
+
+.pin-box{
+  flex:1;height:56px;border-radius:12px;
   border:1.5px solid var(--border);
   background:var(--green-soft);
-  font-family:var(--mono);font-size:24px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:22px;font-weight:800;
   color:var(--text);
-  text-align:center;
-  outline:none;
   transition:border-color .18s,box-shadow .18s,background .18s;
-  -webkit-appearance:none;
-  padding:0;
-  caret-color:transparent;
 }
-.pin-input:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(123,191,46,.15);
-  background:white;
-}
-/* masked state — dots without changing input type */
-.pin-input.masked{
-  -webkit-text-security:disc;
-  font-size:18px;
-}
+.pin-box.filled{background:white;border-color:var(--green)}
+.pin-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
 
 .eye-btn-outside{
   background:var(--green-light);
@@ -440,13 +442,18 @@ input[type=tel]:focus{
           <div class="field">
             <div class="field-label" style="margin-bottom:7px">PIN-kaaga</div>
             <div class="pin-wrap">
-              <div class="pin-boxes" id="pinBoxes">
-                <input class="pin-input masked" id="pi0" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input masked" id="pi1" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input masked" id="pi2" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input masked" id="pi3" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+              <div class="pin-boxes-wrap" id="pinWrap">
+                <input type="tel" id="pinHidden" maxlength="4"
+                  inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                  class="pin-real-input">
+                <div class="pin-display">
+                  <div class="pin-box" id="pb0"></div>
+                  <div class="pin-box" id="pb1"></div>
+                  <div class="pin-box" id="pb2"></div>
+                  <div class="pin-box" id="pb3"></div>
+                </div>
               </div>
-              <button class="eye-btn-outside" id="eyeBtn" type="button" aria-label="Muuji PIN">
+              <button class="eye-btn-outside" id="eyeBtn" type="button">
                 <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -627,25 +634,43 @@ document.getElementById("phone").oninput=function(){
   validateLogin();
 };
 
-/* ── PIN: 4 real inputs ── */
-const pinInputs=[...document.querySelectorAll(".pin-input")];
+/* ── PIN: single hidden input → 4 visual boxes ── */
+const pinHidden=document.getElementById("pinHidden");
+const pinBoxDivs=[...document.querySelectorAll(".pin-box")];
 let pinVisible=false;
 
-pinInputs.forEach((input,i)=>{
-  input.addEventListener('input',function(){
-    this.value=this.value.replace(/\D/g,"").slice(0,1);
-    if(this.value&&i<3) pinInputs[i+1].focus();
-    validateLogin();
-  });
+document.getElementById("pinWrap").addEventListener("click",()=>pinHidden.focus());
 
-  input.addEventListener('keydown',function(e){
-    if(e.key==="Backspace"&&!this.value&&i>0){
-      pinInputs[i-1].value="";
-      pinInputs[i-1].focus();
-      validateLogin();
+function renderPin(){
+  const val=pinHidden.value.replace(/\D/g,"").slice(0,4);
+  pinHidden.value=val;
+  const focused=document.activeElement===pinHidden;
+  pinBoxDivs.forEach((box,i)=>{
+    box.className="pin-box";
+    box.textContent="";
+    if(i<val.length){
+      box.textContent=pinVisible?val[i]:"●";
+      box.classList.add("filled");
     }
+    if(i===val.length&&focused) box.classList.add("active");
   });
-});
+  validateLogin();
+}
+
+pinHidden.addEventListener("input",renderPin);
+pinHidden.addEventListener("focus",renderPin);
+pinHidden.addEventListener("blur",renderPin);
+
+function getPinValue(){return pinHidden.value.replace(/\D/g,"").slice(0,4)}
+
+/* ── Eye toggle ── */
+document.getElementById("eyeBtn").onclick=()=>{
+  pinVisible=!pinVisible;
+  renderPin();
+  document.getElementById("eyeBtn").innerHTML=pinVisible
+    ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+    :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+};
 
 function getPinValue(){return pinInputs.map(p=>p.value).join("")}
 
