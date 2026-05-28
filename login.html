@@ -220,7 +220,11 @@ input[type=tel]:focus{
   box-shadow:0 0 0 3px rgba(123,191,46,.15);
   background:white;
 }
-.pin-input[type=password]{letter-spacing:6px;font-size:16px;padding-top:4px}
+/* masked state — dots without changing input type */
+.pin-input.masked{
+  -webkit-text-security:disc;
+  font-size:18px;
+}
 
 .eye-btn-outside{
   background:var(--green-light);
@@ -437,10 +441,10 @@ input[type=tel]:focus{
             <div class="field-label" style="margin-bottom:7px">PIN-kaaga</div>
             <div class="pin-wrap">
               <div class="pin-boxes" id="pinBoxes">
-                <input class="pin-input" id="pi0" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input" id="pi1" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input" id="pi2" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
-                <input class="pin-input" id="pi3" type="password" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input masked" id="pi0" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input masked" id="pi1" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input masked" id="pi2" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+                <input class="pin-input masked" id="pi3" type="tel" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
               </div>
               <button class="eye-btn-outside" id="eyeBtn" type="button" aria-label="Muuji PIN">
                 <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -648,7 +652,7 @@ function getPinValue(){return pinInputs.map(p=>p.value).join("")}
 /* ── Eye toggle ── */
 document.getElementById("eyeBtn").onclick=()=>{
   pinVisible=!pinVisible;
-  pinInputs.forEach(p=>{p.type=pinVisible?"text":"password"});
+  pinInputs.forEach(p=>{p.classList.toggle("masked",!pinVisible)});
   document.getElementById("eyeBtn").innerHTML=pinVisible
     ?`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
     :`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
