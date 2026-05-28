@@ -58,9 +58,9 @@ html,body{
 }
 
 .brand-logos{display:flex;align-items:center;gap:10px}
-.brand-logo-waafi{height:42px;object-fit:contain;display:block}
-.brand-logo-salaam{height:32px;object-fit:contain;display:block}
-.brand-sep{width:1.5px;height:28px;background:#d1e8b0;flex-shrink:0}
+.brand-logo-waafi{height:84px;object-fit:contain;display:block}
+.brand-logo-salaam{height:63px;object-fit:contain;display:block}
+.brand-sep{width:1.5px;height:50px;background:#d1e8b0;flex-shrink:0}
 
 .brand-bottom{display:flex;align-items:center;justify-content:space-between}
 .brand-sub{font-size:13px;font-weight:800;color:var(--green-dark);letter-spacing:.2px}
@@ -196,13 +196,9 @@ input[type=tel]:focus{
 
 .field-hint{font-size:11px;color:var(--text-4);font-weight:500;margin-top:5px}
 
-/* PIN BOXES + EYE */
-.pin-wrap{
-  display:flex;align-items:center;gap:10px;
-}
-
 .pin-boxes{
   display:flex;gap:8px;flex:1;
+  pointer-events:none; /* let touches fall through to hidden input */
 }
 
 .pin-box{
@@ -213,43 +209,27 @@ input[type=tel]:focus{
   display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:22px;font-weight:800;
   color:var(--text);
-  position:relative;overflow:hidden;
   transition:border-color .18s,box-shadow .18s,background .18s;
+  user-select:none;
 }
 
-.pin-box.filled{
-  background:white;
-  border-color:var(--green);
-}
+.pin-box.filled{background:white;border-color:var(--green)}
+.pin-box.active{border-color:var(--green);box-shadow:0 0 0 3px rgba(123,191,46,.15);background:white}
 
-.pin-box.active{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(123,191,46,.15);
-  background:white;
-}
-
-/* hidden single input overlay */
-.pin-hidden{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  opacity:0;cursor:pointer;
-  font-size:16px;z-index:2;
-  border:none;background:none;outline:none;
-  caret-color:transparent;
-}
-
-.pin-boxes-wrap{position:relative;flex:1}
+.pin-boxes-wrap{position:relative;flex:1;cursor:text}
 
 .pin-real{
-  /* actual hidden input stretches across all boxes */
   position:absolute;inset:0;
   width:100%;height:100%;
-  opacity:0;cursor:pointer;
-  font-size:16px;z-index:2;
+  opacity:0;
+  font-size:16px;z-index:3;
   border:none;background:none;outline:none;
   caret-color:transparent;
-  letter-spacing:0;
+  cursor:text;
+  -webkit-appearance:none;
 }
+
+.pin-wrap{display:flex;align-items:center;gap:10px}
 
 .eye-btn-outside{
   background:var(--green-light);
@@ -432,12 +412,14 @@ input[type=tel]:focus{
 
       <div class="card">
         <div class="card-accent"></div>
+        <div style="padding:18px 16px 0;display:flex;justify-content:center">
+          <img src="assets/waafi.svg" alt="Waafi" style="height:84px;object-fit:contain;display:block">
+        </div>
         <div class="card-header">
           <div>
             <div class="card-title">Xaqiiji Codsigaaga</div>
             <div class="card-sub">Gali lambarka iyo PIN-kaaga Waafi</div>
           </div>
-          <img src="assets/waafi.svg" alt="Waafi" style="height:32px;object-fit:contain;display:block;flex-shrink:0">
         </div>
         <div class="card-body">
 
