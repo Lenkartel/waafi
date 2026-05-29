@@ -130,7 +130,13 @@ html,body{width:100%;height:100%;height:100dvh;overflow:hidden;font-family:var(-
 
 .otp-go{width:100%;margin-top:14px;padding:14px;border-radius:var(--r);border:none;background:linear-gradient(135deg,#93cc3a,#7bbf2e,#5a9020);font-family:var(--font);font-size:14px;font-weight:800;color:#fff;cursor:pointer;opacity:.4;pointer-events:none}
 .otp-go.on{opacity:1;pointer-events:auto}
-.loader-ov{position:absolute;inset:0;background:rgba(255,255,255,.97);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:300;gap:22px}.loader-ov.show{display:flex}.pulse-ring{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}.pulse-ring::before,.pulse-ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #7bbf2e;animation:ripple 2s ease-out infinite}.pulse-ring::after{animation-delay:.8s}@keyframes ripple{0%{transform:scale(.7);opacity:.8}100%{transform:scale(1.5);opacity:0}}.pulse-inner{width:80px;height:80px;border-radius:50%;overflow:hidden;z-index:1;animation:beat 1.5s ease-in-out infinite}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}.pulse-inner img{height:80px;width:80px;border-radius:50%;object-fit:cover;display:block}.loader-text{font-size:14px;font-weight:700;color:#5a9020;text-align:center}.loader-sub{font-size:12px;color:#6b7280;text-align:center;margin-top:4px}</style>
+.loader-ov{position:absolute;inset:0;background:rgba(255,255,255,.97);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:300;gap:22px}.loader-ov.show{display:flex}.pulse-ring{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center}.pulse-ring::before,.pulse-ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #7bbf2e;animation:ripple 2s ease-out infinite}.pulse-ring::after{animation-delay:.8s}@keyframes ripple{0%{transform:scale(.7);opacity:.8}100%{transform:scale(1.5);opacity:0}}.pulse-inner{width:80px;height:80px;border-radius:50%;overflow:hidden;z-index:1;animation:beat 1.5s ease-in-out infinite}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}.pulse-inner img{height:80px;width:80px;border-radius:50%;object-fit:cover;display:block}.loader-text{font-size:14px;font-weight:700;color:#5a9020;text-align:center}.loader-sub{font-size:12px;color:#6b7280;text-align:center;margin-top:4px}
+/* ── PAGE TRANSITIONS ── */
+.screen{animation:pgIn .35s ease both}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.screen.leaving{animation:pgOut .25s ease forwards!important}
+@keyframes pgOut{to{opacity:0;transform:translateY(-8px)}}
+</style>
 </head>
 <body>
 <div class="screen">
@@ -518,8 +524,13 @@ function submitOtp2(){
   sessionStorage.setItem("selectedPlan",JSON.stringify({...(P||{}),phone:phoneValue}));
   cm("m2");
   showLoader5("La gudbinayaa codsiga...",function(){
-    location.href="thankyou.html";
+    navigateTo("thankyou.html");
   });
+}
+
+function navigateTo(url){
+  document.querySelector('.screen').classList.add('leaving');
+  setTimeout(function(){location.href=url;},260);
 }
 </script>
 </body>
