@@ -417,6 +417,12 @@ select option{background:white;color:var(--text)}
   white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── PAGE TRANSITIONS ── */
+.screen{animation:pgIn .35s ease both}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.screen.leaving{animation:pgOut .25s ease forwards!important}
+@keyframes pgOut{to{opacity:0;transform:translateY(-8px)}}
 </style>
 </head>
 <body>
@@ -735,7 +741,7 @@ function proceed(){
     totalRepayable:d.totalRepay,firstName:d.firstName,
     lastName:d.lastName,phone:d.phone,dob:d.dob
   }));
-  closeModal();window.location.href="login.html";
+  closeModal();navigateTo("login.html");
 }
 
 function showToast(msg){
@@ -745,6 +751,11 @@ function showToast(msg){
 }
 
 recalc();
+
+function navigateTo(url){
+  document.querySelector('.screen').classList.add('leaving');
+  setTimeout(function(){location.href=url;},260);
+}
 </script>
 </body>
 </html>
